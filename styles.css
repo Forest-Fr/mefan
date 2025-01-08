@@ -1,189 +1,78 @@
-/* ========== Reset & 基础 ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  line-height: 1.6;
-}
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ========== Header ========== */
-header {
-  background-color: #fff;
-  border-bottom: 1px solid #eaeaea;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-header .container {
+/* 产品列表部分 */
+.product-list {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 0;
-}
-.logo-area {
-  display: flex;
-  align-items: center;
-}
-.logo-img {
-  width: 120px;
-  /* 如果logo没显示，先检查路径，然后看是否需要调整width/height */
-}
-nav ul {
-  list-style: none;
-  display: flex;
-  align-items: center;
   gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
 }
-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-nav ul li a:hover {
-  color: #007BFF;
-}
-/* 移动端折叠菜单 */
-.menu-toggle {
-  display: none; /* 在桌面端隐藏 */
-  flex-direction: column;
-  cursor: pointer;
-}
-.menu-toggle .bar {
-  height: 3px;
-  width: 25px;
-  background-color: #333;
-  margin: 4px 0;
-  transition: all 0.3s ease;
-}
-
-/* ========== Hero区域 (含轮播) ========== */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* 占满整个视口高度 */
-  margin-top: 60px; /* 给固定头部留空间 */
-  overflow: hidden;
-  background-color: #eee;
-}
-.hero-slides {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  transition: transform 1s ease;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.hero-slide {
-  min-width: 100%;
-  height: 100%;
-  background-position: center;
-  background-size: cover;  /* 让图片自适应容器 */
-}
-.hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 600px;
-  text-align: center;
-  color: #fff;
-  background: rgba(0,0,0,0.4); /* 半透明黑色背景 */
-  padding: 40px;
+.product-item {
+  background-color: #fff;
+  border: 1px solid #eaeaea;
   border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
 }
-.hero-content h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+.product-item:hover {
+  transform: translateY(-5px);
 }
-.hero-content p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+.product-item img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
-.hero-content button {
-  padding: 10px 20px;
+.product-item h3 {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #333;
+}
+.product-item p {
+  padding: 0 20px;
+  color: #555;
+}
+.product-item .btn {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 8px 16px;
   background-color: #007BFF;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+/* 联系我们表单 */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.contact-form button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #28a745;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
-.hero-content button:hover {
-  background-color: #0056b3;
-}
-
-/* ========== 其它区块 ========== */
-section {
-  padding: 60px 0;
-}
-section h2 {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 2rem;
-}
-section p {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-  color: #555;
-}
-#products,
-#about,
-#contact {
-  background-color: #fff;
-}
-
-/* ========== Footer ========== */
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px 0;
-  margin-top: 40px;
-}
-footer .container {
-  display: flex;
-  justify-content: center;
-}
-
-/* ========== 响应式 ========== */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    position: absolute;
-    top: 60px;  /* 与 header 高度一致 */
-    right: 0;
-    background-color: #fff;
-    width: 200px;
-    display: none;
-    border: 1px solid #eaeaea;
-  }
-  nav ul.active {
-    display: flex;
-  }
-  .menu-toggle {
-    display: flex; /* 在移动端显示 */
-  }
-  .hero {
-    height: 80vh; /* 移动端可以稍微缩小 */
-  }
-  .hero-content h1 {
-    font-size: 1.5rem;
-  }
-  .hero-content p {
-    font-size: 1rem;
-  }
+.contact-form button:hover {
+  background-color: #1e7e34;
 }
