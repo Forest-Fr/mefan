@@ -4,14 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MeFan - Experience Wireless Freedom</title>
-  <!-- 引入CSS、JS（同级目录） -->
   <link rel="stylesheet" href="styles.css">
   <script src="scripts.js" defer></script>
 </head>
 <body>
   <!-- Header 区 -->
   <header>
-    <!-- 缩小Logo，以免头部过高 -->
     <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img" />
     <nav>
       <ul>
@@ -25,14 +23,13 @@
 
   <!-- Main 内容 -->
   <main>
-    <!-- Hero (轮播) 区，减小高度为70vh  -->
+    <!-- Hero (轮播)区: 高度更小, 让电脑端更容易看到主体人头 -->
     <section class="hero">
       <div class="hero-slides" id="hero-slides">
         <div class="hero-slide" style="background-image: url('slide1.jpg');"></div>
         <div class="hero-slide" style="background-image: url('slide2.jpg');"></div>
         <div class="hero-slide" style="background-image: url('slide3.jpg');"></div>
       </div>
-      <!-- 文字叠加层 -->
       <div class="hero-content">
         <h1>MeFan - 体验无线自由</h1>
         <p>使用我们的无线蓝牙耳机享受无缝连接和清晰的音质。</p>
@@ -47,9 +44,63 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer，增加公司信息+电话 + 部分社交链接-->
   <footer>
-    <p>&copy; 2025 MeFan. All rights reserved.</p>
+    <div class="footer-info">
+      <div class="company-info">
+        <h3>MeFan Solutions</h3>
+        <p>地址：123 Wireless Road, Shenzhen, China</p>
+        <p>电话：+86 135-1234-5678</p>
+        <p>联系人：Oliver F</p>
+      </div>
+
+      <div class="social-media">
+        <h3>社交媒体</h3>
+        <!-- WhatsApp -->
+        <a 
+          href="https://wa.me/12817839998" 
+          target="_blank" 
+          rel="noopener"
+          aria-label="WhatsApp"
+        >
+          <img 
+            src="https://cdn-icons-png.flaticon.com/512/124/124034.png" 
+            alt="WhatsApp icon" 
+            class="social-icon"
+          />
+          <span>WhatsApp</span>
+        </a>
+        <!-- LinkedIn -->
+        <a 
+          href="https://linkedin.com/in/oliver-f-448b8a287" 
+          target="_blank" 
+          rel="noopener"
+          aria-label="LinkedIn"
+        >
+          <img 
+            src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" 
+            alt="LinkedIn icon" 
+            class="social-icon"
+          />
+          <span>LinkedIn</span>
+        </a>
+        <!-- Skype -->
+        <a href="https://web.skype.com/?openPstnPage=true" target="_self" aria-label="Skype">
+          <img src="Skype Logo.png" alt="Skype Logo" class="social-icon">
+          <span>Skype</span>
+        </a>
+        <!-- WeChat -->
+        <a href="weixin://dl/chat?wxid=wxid_kesvxwp296ci12" aria-label="WeChat">
+          <img src="WeChat Logo.png" alt="WeChat Logo" class="social-icon">
+          <span>WeChat</span>
+        </a>
+        <!-- 预留FB,Twitter,Instagram -->
+        <p style="color:#aaa; margin-top:10px;">(Facebook, Twitter, Instagram 预留)</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 MeFan. All rights reserved.</p>
+    </div>
   </footer>
 </body>
 </html>
