@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MeFan - Experience Wireless Freedom</title>
+  <!-- 引入CSS、JS -->
   <link rel="stylesheet" href="styles.css">
   <script src="scripts.js" defer></script>
 </head>
 <body>
   <!-- Header 区 -->
   <header>
+    <!-- 缩小Logo尺寸，避免头部过度占位 -->
     <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img" />
     <nav>
       <ul>
@@ -23,7 +25,7 @@
 
   <!-- Main 内容 -->
   <main>
-    <!-- Hero (轮播)区: 高度更小, 让电脑端更容易看到主体人头 -->
+    <!-- Hero 轮播区：调小高度 + 居中背景 -->
     <section class="hero">
       <div class="hero-slides" id="hero-slides">
         <div class="hero-slide" style="background-image: url('slide1.jpg');"></div>
@@ -32,7 +34,7 @@
       </div>
       <div class="hero-content">
         <h1>MeFan - 体验无线自由</h1>
-        <p>使用我们的无线蓝牙耳机享受无缝连接和清晰的音质。</p>
+        <p>享受无线蓝牙耳机带来的清晰音质与便捷交互。</p>
         <a href="products.html" class="btn">了解更多</a>
       </div>
     </section>
@@ -40,11 +42,13 @@
     <!-- 简要介绍区 -->
     <section class="intro-section">
       <h2>为什么选择 MeFan?</h2>
-      <p>MeFan专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。</p>
+      <p>
+        我们专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。
+      </p>
     </section>
   </main>
 
-  <!-- Footer，增加公司信息+电话 + 部分社交链接-->
+  <!-- Footer：保留公司信息 + 社交链接 + EmailJS可选-->
   <footer>
     <div class="footer-info">
       <div class="company-info">
@@ -53,7 +57,6 @@
         <p>电话：+86 135-1234-5678</p>
         <p>联系人：Oliver F</p>
       </div>
-
       <div class="social-media">
         <h3>社交媒体</h3>
         <!-- WhatsApp -->
