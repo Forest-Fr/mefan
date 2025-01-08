@@ -14,7 +14,7 @@ body {
 
 /* 缩小Logo */
 .logo-img {
-  width: 80px; /* 改为80px，避免头部过高 */
+  width: 80px; 
   margin: 10px;
 }
 
@@ -32,7 +32,7 @@ header {
   align-items: center;
 }
 header nav {
-  margin-left: auto; /* 导航靠右 */
+  margin-left: auto;
 }
 header nav ul {
   list-style: none;
@@ -47,22 +47,21 @@ header nav ul li a {
   font-weight: bold;
   transition: color 0.3s ease;
 }
-header nav ul li a.active,
-header nav ul li a:hover {
+header nav ul li a:hover,
+header nav ul li a.active {
   color: #007BFF;
 }
 
-/* 主容器给fixed头部留空间 */
 main {
-  margin-top: 100px; /* 给header一些预留 */
+  margin-top: 100px; /* 给fixed头部留空间 */
   padding: 20px;
 }
 
-/* Hero (轮播) */
+/* Hero (轮播) - 调低高度 */
 .hero {
   position: relative;
   width: 100%;
-  height: 70vh; /* 改小高度 (原100vh) */
+  height: 60vh; 
   background-color: #eee;
   overflow: hidden;
   margin-bottom: 40px;
@@ -101,13 +100,11 @@ main {
   margin-bottom: 15px;
 }
 .hero-content .btn {
-  display: inline-block;
-  padding: 10px 20px;
   background-color: #007BFF;
-  border: none;
   color: #fff;
   border-radius: 5px;
   text-decoration: none;
+  padding: 10px 20px;
 }
 
 /* intro-section */
@@ -127,7 +124,7 @@ main {
   color: #555;
 }
 
-/* product-list-section */
+/* products列表 */
 .product-list-section {
   background-color: #fff;
   margin-bottom: 40px;
@@ -163,7 +160,6 @@ main {
 .product-item h3 {
   margin-top: 20px;
   font-size: 1.2rem;
-  color: #333;
 }
 .product-item p {
   padding: 0 20px;
@@ -242,34 +238,73 @@ main {
   border-radius: 5px;
 }
 
-/* Footer */
+/* Footer信息区 */
 footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px 0;
+  background-color: #f9f9f9;
+  padding: 20px 20px;
   text-align: center;
 }
+.footer-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+.company-info,
+.social-media {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 15px 20px;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.company-info h3,
+.social-media h3 {
+  margin-bottom: 10px;
+}
+.social-media a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #007BFF;
+  margin-right: 15px;
+  margin-top: 5px;
+}
+.social-media a:hover {
+  opacity: 0.7;
+}
+.social-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  object-fit: cover;
+}
+p, span {
+  color: #333;
+}
+p[style] {
+  color: #aaa !important; 
+}
+copyright {
+  margin-top: 10px;
+}
 
-/* 响应式处理 */
+/* 响应式 */
 @media (max-width: 768px) {
   header {
-    padding: 10px;
     display: block;
     text-align: center;
   }
   header nav {
     float: none;
-    margin: 10px 0 0 0;
-  }
-  header nav ul {
-    display: inline-block;
+    margin-top: 10px;
   }
   header nav ul li {
     display: inline-block;
-    margin: 0 15px;
+    margin: 0 15px 10px 0;
   }
-
-  /* 减小 hero 再度高度 */
+  /* Hero更小 */
   .hero {
     height: 50vh;
   }
@@ -280,6 +315,10 @@ footer {
     font-size: 1rem;
   }
   .logo-img {
-    width: 60px; /* 移动端进一步缩小 */
+    width: 60px; 
+  }
+  footer .footer-info {
+    flex-direction: column;
+    align-items: center;
   }
 }
