@@ -14,11 +14,11 @@ body {
 
 /* 缩小Logo */
 .logo-img {
-  width: 80px; 
+  width: 80px;
   margin: 10px;
 }
 
-/* 头部 */
+/* 头部导航 */
 header {
   background-color: #fff;
   border-bottom: 1px solid #eaeaea;
@@ -53,11 +53,11 @@ header nav ul li a.active {
 }
 
 main {
-  margin-top: 100px; /* 给fixed头部留空间 */
+  margin-top: 100px; /* 预留头部空间 */
   padding: 20px;
 }
 
-/* Hero (轮播) - 调低高度 */
+/* Hero区 (轮播) - 调低高度 */
 .hero {
   position: relative;
   width: 100%;
@@ -124,7 +124,7 @@ main {
   color: #555;
 }
 
-/* products列表 */
+/* 产品列表 */
 .product-list-section {
   background-color: #fff;
   margin-bottom: 40px;
@@ -290,7 +290,7 @@ copyright {
   margin-top: 10px;
 }
 
-/* 响应式 */
+/* 响应式处理 */
 @media (max-width: 768px) {
   header {
     display: block;
@@ -304,7 +304,6 @@ copyright {
     display: inline-block;
     margin: 0 15px 10px 0;
   }
-  /* Hero更小 */
   .hero {
     height: 50vh;
   }
@@ -315,7 +314,7 @@ copyright {
     font-size: 1rem;
   }
   .logo-img {
-    width: 60px; 
+    width: 60px;
   }
   footer .footer-info {
     flex-direction: column;
