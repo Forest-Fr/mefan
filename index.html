@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MeFan</title>
-
-  <!-- 不写“styles/styles.css”，而是直接“styles.css” -->
+  <title>MeFan - Experience Wireless Freedom</title>
+  <!-- 同级引用CSS、JS -->
   <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
 </head>
 <body>
+  <!-- Header 区 -->
   <header>
-    <!-- 注意空格和大小写 -->
-    <img src="MeFan Logo.png" alt="MeFan Logo">
+    <!-- Logo（MeFan Logo.png）也在同目录 -->
+    <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img">
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="products.html">Products</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="contact.html">Contact Us</a></li>
@@ -22,19 +23,35 @@
     </nav>
   </header>
 
+  <!-- Main 内容 -->
   <main>
+    <!-- Hero (轮播) 区 -->
     <section class="hero">
-      <!-- 如果CSS里已写 .hero { background-image: url("slide1.jpg") } -->
-      <!-- 就不用再img标签显示slide1, 否则会重复 -->
-      <img src="slide1.jpg" alt="First Slide">
-      <h2>MeFan - 体验无线自由</h2>
+      <!-- 3张图片，背景轮播方式 or <img>方式二选一 -->
+      <div class="hero-slides" id="hero-slides">
+        <!-- 这三张图都在同目录：slide1.jpg, slide2.jpg, slide3.jpg -->
+        <div class="hero-slide" style="background-image: url('slide1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('slide2.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('slide3.jpg');"></div>
+      </div>
+      <!-- 文字叠加层 -->
+      <div class="hero-content">
+        <h1>MeFan - 体验无线自由</h1>
+        <p>使用我们的无线蓝牙耳机享受无缝连接和清晰的音质。</p>
+        <a href="products.html" class="btn">了解更多</a>
+      </div>
+    </section>
+
+    <!-- 简要介绍区 -->
+    <section class="intro-section">
+      <h2>为什么选择 MeFan?</h2>
+      <p>MeFan专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。</p>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 MeFan. All rights reserved.</p>
   </footer>
-
-  <script src="scripts.js"></script>
 </body>
 </html>
