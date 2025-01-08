@@ -1,46 +1,50 @@
 /***************************************************
  * scripts.js
- * 用于 MeFan 网站的核心脚本，包括：
- * 1. Hero轮播
- * 2. 可选的移动端折叠菜单
+ * 用于 MeFan 网站的核心脚本
+ * -----------------------------------------------
+ * 1. Hero轮播 (电脑端/移动端)
+ * 2. EmailJS表单提交
  ***************************************************/
 
-/* Hero轮播：简单定时器切换 */
+/* 英文注释仅示例，如需中文可自行替换 */
+
+// Hero轮播：自动每5秒切换
 const heroSlides = document.getElementById('hero-slides');
 if (heroSlides) {
   let currentIndex = 0;
   const totalSlides = heroSlides.children.length;
 
-  // 每隔5秒自动切换到下一张
   setInterval(() => {
     currentIndex = (currentIndex + 1) % totalSlides;
-    // 使用 transform: translateX(-N*100%) 来横向移动
     heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
   }, 5000);
 }
 
-/* 可选：移动端菜单折叠逻辑 
-   若HTML里存在：
-   <div class="menu-toggle" id="mobile-menu">
-     <span class="bar"></span> ...
-   </div>
-   与CSS对应 .menu-toggle, nav ul.active 等
-*/
-const mobileMenu = document.getElementById('mobile-menu');
-const headerNavUl = document.querySelector('header nav ul');
+/* EmailJS整合：公共密钥 + Service/Template ID (可选) */
+/* 仅当在 contact.html 中引入了 emailjs-com CDN 并给 form加id=contactForm */
+document.addEventListener('DOMContentLoaded', () => {
+  // 初始化EmailJS（若不需要可删除此块）
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init("HXCThZROMytOt-wyp"); // 您给的公共密钥
+  }
 
-if (mobileMenu && headerNavUl) {
-  mobileMenu.addEventListener('click', () => {
-    headerNavUl.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-  });
-}
+  const contactForm = document.getElementById("contactForm");
+  if(contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-/* 可选：Learn More按钮等点击示例 
-   HTML中如： <button onclick="learnMore()">了解更多</button>
-*/
-function learnMore() {
-  alert('更多信息即将上线，敬请期待！');
-}
-
-/* 联系表单提交事件、或其他JS逻辑可在此继续添加 */
+      // Service ID: service_1ffkva1
+      // 发送邮件模板: template_ypdj9n9
+      // (若接收邮件模板另有设置，也可改)
+      emailjs.sendForm("service_1ffkva1", "template_ypdj9n9", contactForm)
+        .then(() => {
+          alert("邮件已发送成功，我们将尽快与您联系！");
+          contactForm.reset();
+        })
+        .catch((err) => {
+          console.error("邮件发送失败：", err);
+          alert("邮件发送失败，请稍后再试。");
+        });
+    });
+  }
+});
