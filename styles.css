@@ -1,4 +1,4 @@
-/* ========== 重置 & 基础 ========== */
+/* ========== Reset & 基础 ========== */
 * {
   margin: 0;
   padding: 0;
@@ -6,15 +6,15 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   color: #333;
   line-height: 1.6;
 }
 
-/* 如果需要logo更适合位置，可自定义 */
+/* 缩小Logo */
 .logo-img {
-  width: 120px;
+  width: 80px; /* 改为80px，避免头部过高 */
   margin: 10px;
 }
 
@@ -28,14 +28,11 @@ header {
   left: 0;
   z-index: 1000;
   padding: 10px;
-}
-header img {
-  display: inline-block;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
 }
 header nav {
-  display: inline-block;
-  float: right;
+  margin-left: auto; /* 导航靠右 */
 }
 header nav ul {
   list-style: none;
@@ -50,22 +47,22 @@ header nav ul li a {
   font-weight: bold;
   transition: color 0.3s ease;
 }
-header nav ul li a:hover,
-header nav ul li a.active {
+header nav ul li a.active,
+header nav ul li a:hover {
   color: #007BFF;
 }
 
-/* 主容器必须为顶部header留出空间 */
+/* 主容器给fixed头部留空间 */
 main {
-  margin-top: 80px; /* 防止被fixed头部挡住 */
+  margin-top: 100px; /* 给header一些预留 */
   padding: 20px;
 }
 
-/* Hero 区 (轮播) */
+/* Hero (轮播) */
 .hero {
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 70vh; /* 改小高度 (原100vh) */
   background-color: #eee;
   overflow: hidden;
   margin-bottom: 40px;
@@ -92,27 +89,28 @@ main {
   text-align: center;
   color: #fff;
   background: rgba(0,0,0,0.4);
-  padding: 40px;
+  padding: 30px;
   border-radius: 10px;
 }
 .hero-content h1 {
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .hero-content p {
   font-size: 1.1rem;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .hero-content .btn {
+  display: inline-block;
   padding: 10px 20px;
   background-color: #007BFF;
   border: none;
-  border-radius: 5px;
   color: #fff;
+  border-radius: 5px;
   text-decoration: none;
 }
 
-/* 简要介绍区 */
+/* intro-section */
 .intro-section {
   background-color: #fff;
   padding: 40px 20px;
@@ -129,21 +127,21 @@ main {
   color: #555;
 }
 
-/* 产品列表区 */
+/* product-list-section */
 .product-list-section {
   background-color: #fff;
   margin-bottom: 40px;
 }
 .product-list-section h2 {
   text-align: center;
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .product-list {
   display: flex;
   gap: 30px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 .product-item {
   background-color: #fff;
@@ -172,51 +170,60 @@ main {
   color: #555;
 }
 .product-item .btn {
-  display: inline-block;
   margin: 20px 0;
   background-color: #007BFF;
   color: #fff;
   text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 5px;
 }
 
-/* 关于我们区 */
+/* about-section */
 .about-section {
   background-color: #f9f9f9;
+  text-align: center;
   padding: 40px 20px;
   margin-bottom: 40px;
 }
 .about-section h2 {
-  text-align: center;
   margin-bottom: 20px;
+  font-size: 1.8rem;
 }
 .about-section p {
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
   color: #555;
-  margin-bottom: 15px;
   line-height: 1.6;
+  margin-bottom: 15px;
 }
 
-/* 联系我们区 */
+/* contact-section */
 .contact-section {
   background-color: #fff;
   padding: 40px 20px;
   margin-bottom: 40px;
   text-align: center;
 }
+.contact-section h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+.contact-section p {
+  color: #555;
+  margin-bottom: 20px;
+}
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
-  text-align: left; /* 表单内左对齐更好 */
+  text-align: left;
 }
 .form-group {
   margin-bottom: 15px;
 }
 .form-group label {
   display: block;
-  margin-bottom: 5px;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 .form-group input,
 .form-group textarea {
@@ -230,8 +237,8 @@ main {
   margin: 20px auto 0;
   padding: 10px 20px;
   background-color: #007BFF;
-  color: #fff;
   border: none;
+  color: #fff;
   border-radius: 5px;
 }
 
@@ -245,21 +252,34 @@ footer {
 
 /* 响应式处理 */
 @media (max-width: 768px) {
-  header nav ul {
-    display: none;
-  }
-  header nav ul.active {
+  header {
+    padding: 10px;
     display: block;
-    margin-top: 10px;
+    text-align: center;
+  }
+  header nav {
+    float: none;
+    margin: 10px 0 0 0;
+  }
+  header nav ul {
+    display: inline-block;
   }
   header nav ul li {
-    display: block;
-    margin: 10px 0;
+    display: inline-block;
+    margin: 0 15px;
   }
+
+  /* 减小 hero 再度高度 */
   .hero {
-    height: 60vh;
+    height: 50vh;
   }
   .hero-content h1 {
     font-size: 1.5rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .logo-img {
+    width: 60px; /* 移动端进一步缩小 */
   }
 }
