@@ -12,98 +12,76 @@ body {
   line-height: 1.6;
 }
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+/* 如果需要logo更适合位置，可自定义 */
+.logo-img {
+  width: 120px;
+  margin: 10px;
 }
 
-/* ========== 头部导航 ========== */
+/* 头部 */
 header {
   background-color: #fff;
   border-bottom: 1px solid #eaeaea;
   position: fixed;
   width: 100%;
   top: 0;
+  left: 0;
   z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
 }
-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 0;
+header img {
+  display: inline-block;
+  vertical-align: middle;
 }
-
-.logo-area {
-  display: flex;
-  align-items: center;
+header nav {
+  display: inline-block;
+  float: right;
 }
-
-.logo-img {
-  width: 120px;
-  /* 如果logo路径没显示，先检查文件名/位置 */
-}
-
-nav ul {
+header nav ul {
   list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 30px;
 }
-
-nav ul li a {
+header nav ul li {
+  display: inline-block;
+  margin-left: 30px;
+}
+header nav ul li a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
   transition: color 0.3s ease;
 }
-
-nav ul li a:hover {
+header nav ul li a:hover,
+header nav ul li a.active {
   color: #007BFF;
 }
 
-/* 移动端折叠菜单按钮 */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-.menu-toggle .bar {
-  height: 3px;
-  width: 25px;
-  background-color: #333;
-  margin: 4px 0;
-  transition: all 0.3s ease;
+/* 主容器必须为顶部header留出空间 */
+main {
+  margin-top: 80px; /* 防止被fixed头部挡住 */
+  padding: 20px;
 }
 
-/* ========== Hero (含轮播) ========== */
+/* Hero 区 (轮播) */
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh; /* 撑满一屏，可按需改为固定像素 */
-  margin-top: 60px; /* 防止被固定头部挡住 */
-  overflow: hidden;
+  height: 80vh;
   background-color: #eee;
+  overflow: hidden;
+  margin-bottom: 40px;
 }
-
 .hero-slides {
   display: flex;
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
   transition: transform 1s ease;
 }
-
 .hero-slide {
   min-width: 100%;
   height: 100%;
   background-position: center;
   background-size: cover;
 }
-
 .hero-content {
   position: absolute;
   top: 50%;
@@ -113,52 +91,37 @@ nav ul li a:hover {
   max-width: 600px;
   text-align: center;
   color: #fff;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0,0,0,0.4);
   padding: 40px;
   border-radius: 10px;
 }
-
 .hero-content h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 20px;
 }
-
 .hero-content p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 20px;
 }
-
-.hero-content .btn,
-button,
-input[type="submit"],
-.form-button {
+.hero-content .btn {
   padding: 10px 20px;
   background-color: #007BFF;
-  color: #fff;
-  text-decoration: none;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
 }
 
-.hero-content .btn:hover,
-button:hover,
-input[type="submit"]:hover,
-.form-button:hover {
-  background-color: #0056b3;
-}
-
-/* ========== 介绍/Intro区 (可选) ========== */
+/* 简要介绍区 */
 .intro-section {
   background-color: #fff;
-  padding: 60px 0;
-}
-.intro-section .container {
+  padding: 40px 20px;
   text-align: center;
+  margin-bottom: 40px;
 }
 .intro-section h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
 }
 .intro-section p {
   max-width: 800px;
@@ -166,10 +129,14 @@ input[type="submit"]:hover,
   color: #555;
 }
 
-/* ========== 产品列表 (新增部分) ========== */
+/* 产品列表区 */
 .product-list-section {
   background-color: #fff;
-  padding: 60px 0;
+  margin-bottom: 40px;
+}
+.product-list-section h2 {
+  text-align: center;
+  margin-top: 20px;
 }
 .product-list {
   display: flex;
@@ -178,7 +145,6 @@ input[type="submit"]:hover,
   flex-wrap: wrap;
   margin-top: 40px;
 }
-
 .product-item {
   background-color: #fff;
   border: 1px solid #eaeaea;
@@ -189,77 +155,63 @@ input[type="submit"]:hover,
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
 }
-
 .product-item:hover {
   transform: translateY(-5px);
 }
-
 .product-item img {
   width: 100%;
   height: auto;
-  display: block;
 }
-
 .product-item h3 {
   margin-top: 20px;
   font-size: 1.2rem;
   color: #333;
 }
-
 .product-item p {
   padding: 0 20px;
   color: #555;
 }
-
 .product-item .btn {
   display: inline-block;
   margin: 20px 0;
-  padding: 8px 16px;
   background-color: #007BFF;
   color: #fff;
-  border-radius: 5px;
   text-decoration: none;
 }
 
-/* ========== About 我们区 (可选) ========== */
+/* 关于我们区 */
 .about-section {
   background-color: #f9f9f9;
-  padding: 60px 0;
-}
-.about-section .container {
-  max-width: 800px;
-  margin: 0 auto;
+  padding: 40px 20px;
+  margin-bottom: 40px;
 }
 .about-section h2 {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 2rem;
+  margin-bottom: 20px;
 }
 .about-section p {
-  color: #555;
-  margin-bottom: 20px;
-  line-height: 1.7;
-}
-
-/* ========== Contact 表单区 (可选) ========== */
-.contact-section {
-  background-color: #fff;
-  padding: 60px 0;
-}
-.contact-section .container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   text-align: center;
-}
-.contact-section p {
   color: #555;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* 联系我们区 */
+.contact-section {
+  background-color: #fff;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 .contact-form {
-  text-align: left; /* 表单内部保持左对齐较好 */
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left; /* 表单内左对齐更好 */
 }
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .form-group label {
   display: block;
@@ -273,73 +225,41 @@ input[type="submit"]:hover,
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-.form-button {
+.contact-form button {
+  display: block;
+  margin: 20px auto 0;
   padding: 10px 20px;
-  background-color: #28a745;
+  background-color: #007BFF;
+  color: #fff;
   border: none;
   border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-}
-.form-button:hover {
-  background-color: #1e7e34;
 }
 
-/* ========== Footer ========== */
+/* Footer */
 footer {
   background-color: #333;
   color: #fff;
   padding: 20px 0;
-  margin-top: 40px;
-}
-footer .container {
-  display: flex;
-  justify-content: center;
-}
-footer p {
-  margin: 0;
+  text-align: center;
 }
 
-/* ========== 响应式处理 ========== */
+/* 响应式处理 */
 @media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: #fff;
-    width: 200px;
+  header nav ul {
     display: none;
-    border: 1px solid #eaeaea;
   }
-  nav ul.active {
-    display: flex;
+  header nav ul.active {
+    display: block;
+    margin-top: 10px;
   }
-  nav ul li {
-    margin: 15px 0;
-    text-align: center;
+  header nav ul li {
+    display: block;
+    margin: 10px 0;
   }
-  .menu-toggle {
-    display: flex;
-  }
-
   .hero {
-    height: 80vh;
+    height: 60vh;
   }
   .hero-content h1 {
-    font-size: 1.8rem;
-  }
-  .hero-content p {
-    font-size: 1rem;
-    margin-bottom: 15px;
-  }
-
-  /* 产品列表、表单等随屏幕宽度自动换行 */
-  .product-item {
-    width: 90%;
-    margin: 20px auto;
-  }
-  .contact-section .container {
-    width: 90%;
+    font-size: 1.5rem;
   }
 }
