@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MeFan - Contact Us</title>
-  <!-- EmailJS 若需前端集成，使用官方CDN -->
+  <!-- 如果要EmailJS前端集成，可引入其CDN -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
   <link rel="stylesheet" href="styles.css">
   <script src="scripts.js" defer></script>
@@ -27,11 +27,9 @@
       <h2>联系我们</h2>
       <p>如果您有任何疑问或建议，请通过以下方式与我们取得联系。</p>
 
-      <!-- EmailJS整合：id="contactForm" + scripts.js监听发送 -->
       <form id="contactForm" class="contact-form">
         <div class="form-group">
           <label for="name">姓名</label>
-          <!-- emailJS默认字段: from_name / reply_to / message 等，也可自定义 -->
           <input type="text" id="name" name="from_name" required placeholder="请输入您的姓名">
         </div>
         <div class="form-group">
@@ -51,14 +49,12 @@
     <div class="footer-info">
       <div class="company-info">
         <h3>MeFan Solutions</h3>
-        <p>地址：Zhongxing Building, Dunbei New Village, Dalang South  Road, Longhua Street, Longhua District
-518109, Shenzhen, China</p>
-        <p>电话：+1 281-783-9998</p>
+        <p>地址：123 Wireless Road, Shenzhen, China</p>
+        <p>电话：+86 135-1234-5678</p>
         <p>联系人：Oliver F</p>
       </div>
       <div class="social-media">
         <h3>社交媒体</h3>
-        <!-- WhatsApp -->
         <a 
           href="https://wa.me/12817839998" 
           target="_blank" 
@@ -72,7 +68,6 @@
           />
           <span>WhatsApp</span>
         </a>
-        <!-- LinkedIn -->
         <a 
           href="https://linkedin.com/in/oliver-f-448b8a287" 
           target="_blank" 
@@ -86,17 +81,14 @@
           />
           <span>LinkedIn</span>
         </a>
-        <!-- Skype -->
         <a href="https://web.skype.com/?openPstnPage=true" target="_self" aria-label="Skype">
           <img src="Skype Logo.png" alt="Skype Logo" class="social-icon">
           <span>Skype</span>
         </a>
-        <!-- WeChat -->
         <a href="weixin://dl/chat?wxid=wxid_kesvxwp296ci12" aria-label="WeChat">
           <img src="WeChat Logo.png" alt="WeChat Logo" class="social-icon">
           <span>WeChat</span>
         </a>
-        <!-- 预留FB,Twitter,Instagram -->
         <p style="color:#aaa; margin-top:10px;">(Facebook, Twitter, Instagram 预留)</p>
       </div>
     </div>
