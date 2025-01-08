@@ -1,12 +1,55 @@
-// Hero轮播简单逻辑
-const heroSlides = document.getElementById('hero-slides');
-if(heroSlides) {
-  let currentIndex = 0;
-  const totalSlides = heroSlides.children.length;
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }, 5000);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MeFan - Experience Wireless Freedom</title>
+  <!-- 引入CSS、JS（同级目录） -->
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+  <!-- Header 区 -->
+  <header>
+    <!-- 缩小Logo，以免头部过高 -->
+    <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img" />
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
 
-// 如需更多JS交互可自行添加
+  <!-- Main 内容 -->
+  <main>
+    <!-- Hero (轮播) 区，减小高度为70vh  -->
+    <section class="hero">
+      <div class="hero-slides" id="hero-slides">
+        <div class="hero-slide" style="background-image: url('slide1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('slide2.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('slide3.jpg');"></div>
+      </div>
+      <!-- 文字叠加层 -->
+      <div class="hero-content">
+        <h1>MeFan - 体验无线自由</h1>
+        <p>使用我们的无线蓝牙耳机享受无缝连接和清晰的音质。</p>
+        <a href="products.html" class="btn">了解更多</a>
+      </div>
+    </section>
+
+    <!-- 简要介绍区 -->
+    <section class="intro-section">
+      <h2>为什么选择 MeFan?</h2>
+      <p>MeFan专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MeFan. All rights reserved.</p>
+  </footer>
+</body>
+</html>
