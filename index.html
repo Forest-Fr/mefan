@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MeFan</title>
-  <!-- 引入CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeFan - Experience Wireless Freedom</title>
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container">
-      <!-- Logo区，确保logo.png存在于同级或指定目录 -->
       <div class="logo-area">
-        <a href="#hero">
-          <img src="logo.png" alt="MeFan Logo" class="logo-img" />
+        <a href="index.html">
+          <!-- Logo放在images/目录下 -->
+          <img src="images/logo.png" alt="MeFan Logo" class="logo-img">
         </a>
       </div>
-      <!-- 导航菜单 -->
       <nav>
         <ul>
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <!-- 跳转到不同页面 -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </nav>
-      <!-- 移动端折叠菜单 -->
+      <!-- 移动端菜单按钮 -->
       <div class="menu-toggle" id="mobile-menu">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -35,46 +34,28 @@
     </div>
   </header>
 
-  <!-- Main内容 -->
+  <!-- Main Content -->
   <main>
-    <!-- Hero Section（含三张图片轮播） -->
+    <!-- Hero Section（轮播） -->
     <section class="hero" id="hero">
       <div class="hero-slides" id="hero-slides">
-        <!-- 背景图轮播：slide1.jpg、slide2.jpg、slide3.jpg -->
-        <div class="hero-slide" style="background-image: url('slide1.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('slide2.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('slide3.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/slide1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/slide2.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/slide3.jpg');"></div>
       </div>
       <div class="hero-content">
         <h1>MeFan - 体验无线自由</h1>
         <p>使用我们的无线蓝牙耳机享受无缝连接和清晰的音质。</p>
-        <button onclick="learnMore()">了解更多</button>
+        <!-- 按钮可以跳转到产品或其它分区 -->
+        <a href="products.html" class="btn">了解更多</a>
       </div>
     </section>
-
-    <!-- Products Section -->
-    <section id="products">
+    
+    <!-- 简要介绍区 -->
+    <section class="intro-section">
       <div class="container">
-        <h2>我们的产品</h2>
-        <p>在此处列出您的产品...</p>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-      <div class="container">
-        <h2>关于我们</h2>
-        <p>
-          MeFan致力于提供高品质的无线蓝牙耳机，追求卓越的音质和用户体验。
-        </p>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-      <div class="container">
-        <h2>联系我们</h2>
-        <p>联系表或更多详情放在这里...</p>
+        <h2>为什么选择 MeFan？</h2>
+        <p>MeFan专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。</p>
       </div>
     </section>
   </main>
@@ -86,7 +67,7 @@
     </div>
   </footer>
 
-  <!-- 引入JS -->
-  <script src="scripts.js"></script>
+  <!-- JS -->
+  <script src="scripts/scripts.js"></script>
 </body>
 </html>
