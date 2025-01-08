@@ -2,124 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- 第一张截图中的简单meta -->
+  <!-- 保持原有的Viewport与标题 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MeFan</title>
-
-  <!-- 如有需要，可以在此加入简要SEO信息，示例： -->
-  <!-- <meta name="description" content="MeFan offers high-quality wireless Bluetooth headphones."> -->
-
-  <!-- 如果需要Font Awesome等外部资源，可保留 -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-pq3E7J/6UJoZgD0nYkTmSVaHt+gFVImqFbKzJfKvXMVjFdyHdkXSJHp6Cv0ooxq3+AAoVDxJbga9LrLKyD5jig=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-
-  <!-- 引入CSS，注意路径是否是 styles/styles.css -->
-  <link rel="stylesheet" href="styles/styles.css">
+  <!-- 引入CSS -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header Section -->
+  <!-- Header，含Logo和导航 -->
   <header>
-    <div class="container">
-      <div id="logo">
-        <a href="#hero">
-          <img src="images/logo.png" alt="MeFan Logo" />
-        </a>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-        </ul>
-      </nav>
-      <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-    </div>
+    <!-- 如需LOGO图片，可用 <img src="logo.png" alt="MeFan Logo" /> -->
+    <h1>MeFan Logo</h1>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Main Content -->
+  <!-- Main内容 -->
   <main>
-    <!-- Hero Section（带三张背景图的轮播） -->
+    <!-- Hero Section（带“Learn More”） -->
     <section class="hero" id="hero">
-      <div class="hero-slides" id="hero-slides">
-        <div class="hero-slide" style="background-image: url('images/slide1.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('images/slide2.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('images/slide3.jpg');"></div>
+      <!-- 如果要做背景轮播，可用类似下面的结构 -->
+      <div class="hero-slides">
+        <div class="hero-slide" style="background-image: url('slide1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('slide2.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('slide3.jpg');"></div>
       </div>
+      <!-- 文字和按钮叠加层 -->
       <div class="hero-content">
-        <h1>MeFan - Experience Wireless Freedom</h1>
+        <h2>MeFan - Experience Wireless Freedom</h2>
         <p>Enjoy seamless connectivity and clear sound quality with our wireless Bluetooth headphones.</p>
-        <a href="#products" class="btn">Learn More</a>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-      <div class="container">
-        <h2>About Us</h2>
-        <p>
-          MeFan is dedicated to providing high-quality wireless Bluetooth headphones, striving for excellent 
-          sound quality and user experience. Our products integrate the latest technology with stylish design 
-          to meet all your audio equipment needs.
-        </p>
-        <a href="#about-details" class="btn">Learn More</a>
-      </div>
-    </section>
-
-    <!-- About Details Section -->
-    <section id="about-details" class="about-details">
-      <div class="container">
-        <h2>Our Mission</h2>
-        <p>To provide users with unparalleled audio experiences through innovative technology and superior design.</p>
-
-        <h2>Our Vision</h2>
-        <p>To become a global leader in wireless Bluetooth headphones, trusted and loved by users worldwide.</p>
-
-        <h2>Our Team</h2>
-        <p>Our team consists of passionate audio enthusiasts and technical experts dedicated to continuous innovation.</p>
+        <button onclick="learnMore()">Learn More</button>
       </div>
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="products">
-      <div class="container">
-        <h2>Our Products</h2>
-        <p>You can list your products here...</p>
+    <section id="products">
+      <h2>Our Products</h2>
+      <!-- 示例：可以放产品展示图或卡片 -->
+      <div>
+        <p>You can list or showcase your product items here...</p>
       </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>About Us</h2>
+      <p>
+        MeFan is dedicated to providing high-quality wireless Bluetooth headphones, 
+        striving for excellent sound quality and user experience. Our products integrate 
+        the latest technology with stylish design.
+      </p>
+      <button onclick="learnMoreAbout()">Learn More</button>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2>Contact Us</h2>
-        <p>If you have any questions, feel free to reach out!</p>
-      </div>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>If you have any questions, feel free to reach out!</p>
     </section>
   </main>
 
-  <!-- Footer Section -->
+  <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>&copy; 2025 MeFan. All rights reserved.</p>
-      <ul class="social-links">
-        <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-        <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-        <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
-      </ul>
-    </div>
+    <p>&copy; 2025 MeFan. All rights reserved.</p>
   </footer>
 
-  <!-- 关联外部JS，若有轮播与导航交互逻辑 -->
-  <script src="scripts/scripts.js"></script>
+  <!-- 引入JavaScript -->
+  <script src="scripts.js"></script>
 </body>
 </html>
