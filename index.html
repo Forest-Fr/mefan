@@ -1,73 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MeFan - Experience Wireless Freedom</title>
-  <link rel="stylesheet" href="styles/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MeFan</title>
+
+  <!-- 不写“styles/styles.css”，而是直接“styles.css” -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header -->
   <header>
-    <div class="container">
-      <div class="logo-area">
-        <a href="index.html">
-          <!-- Logo放在images/目录下 -->
-          <img src="images/logo.png" alt="MeFan Logo" class="logo-img">
-        </a>
-      </div>
-      <nav>
-        <ul>
-          <!-- 跳转到不同页面 -->
-          <li><a href="index.html">Home</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </nav>
-      <!-- 移动端菜单按钮 -->
-      <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-    </div>
+    <!-- 注意空格和大小写 -->
+    <img src="MeFan Logo.png" alt="MeFan Logo">
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Main Content -->
   <main>
-    <!-- Hero Section（轮播） -->
-    <section class="hero" id="hero">
-      <div class="hero-slides" id="hero-slides">
-        <div class="hero-slide" style="background-image: url('images/slide1.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('images/slide2.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('images/slide3.jpg');"></div>
-      </div>
-      <div class="hero-content">
-        <h1>MeFan - 体验无线自由</h1>
-        <p>使用我们的无线蓝牙耳机享受无缝连接和清晰的音质。</p>
-        <!-- 按钮可以跳转到产品或其它分区 -->
-        <a href="products.html" class="btn">了解更多</a>
-      </div>
-    </section>
-    
-    <!-- 简要介绍区 -->
-    <section class="intro-section">
-      <div class="container">
-        <h2>为什么选择 MeFan？</h2>
-        <p>MeFan专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。</p>
-      </div>
+    <section class="hero">
+      <!-- 如果CSS里已写 .hero { background-image: url("slide1.jpg") } -->
+      <!-- 就不用再img标签显示slide1, 否则会重复 -->
+      <img src="slide1.jpg" alt="First Slide">
+      <h2>MeFan - 体验无线自由</h2>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>&copy; 2025 MeFan. All rights reserved.</p>
-    </div>
+    <p>&copy; 2025 MeFan. All rights reserved.</p>
   </footer>
 
-  <!-- JS -->
-  <script src="scripts/scripts.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
