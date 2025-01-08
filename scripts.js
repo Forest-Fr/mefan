@@ -1,23 +1,27 @@
-// 移动端导航切换
+// 导航折叠菜单
 const mobileMenu = document.getElementById("mobile-menu");
 const navUl = document.querySelector("nav ul");
 
-mobileMenu.addEventListener("click", () => {
-  navUl.classList.toggle("active");
-  mobileMenu.classList.toggle("active");
-});
+if(mobileMenu && navUl) {
+  mobileMenu.addEventListener("click", () => {
+    navUl.classList.toggle("active");
+    mobileMenu.classList.toggle("active");
+  });
+}
 
-// 简单轮播逻辑（若要自动切换三张图片）
+// Hero轮播
 const heroSlides = document.getElementById("hero-slides");
-let currentIndex = 0;
-const totalSlides = heroSlides.children.length;
+if(heroSlides) {
+  let currentIndex = 0;
+  const totalSlides = heroSlides.children.length;
+  
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }, 5000);
+}
 
-setInterval(() => {
-  currentIndex = (currentIndex + 1) % totalSlides;
-  heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
-}, 5000);
-
-// 按钮点击事件示例
+// “了解更多”弹窗示例
 function learnMore() {
-  alert("更多信息敬请期待...");
+  alert("更多信息即将上线，敬请期待！");
 }
