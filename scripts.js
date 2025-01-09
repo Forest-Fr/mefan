@@ -1,7 +1,7 @@
 /***************************************************
  * scripts.js
  * -----------------------------------------------
- * 1. Hero轮播: 让图片铺满(桌面端80vh, 移动端50vh)
+ * 1. Hero轮播: hero高度100vh, 图片全屏铺满
  * 2. EmailJS表单提交 (可选)
  ***************************************************/
 
@@ -9,14 +9,13 @@ const heroSlides = document.getElementById('hero-slides');
 if (heroSlides) {
   let currentIndex = 0;
   const totalSlides = heroSlides.children.length;
-  
   setInterval(() => {
     currentIndex = (currentIndex + 1) % totalSlides;
     heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
   }, 5000);
 }
 
-/* EmailJS整合，如需 */
+/* EmailJS整合 */
 document.addEventListener('DOMContentLoaded', () => {
   if(typeof emailjs !== 'undefined') {
     emailjs.init("HXCThZROMytOt-wyp");
