@@ -4,14 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MeFan - 让体验无线自由</title>
-  <!-- 引入CSS、JS -->
   <link rel="stylesheet" href="styles.css">
   <script src="scripts.js" defer></script>
 </head>
 <body>
   <!-- Header -->
   <header>
-    <!-- Logo缩小，防止占过多空间 -->
+    <!-- Logo缩小，防止头部过大 -->
     <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img" />
     <nav>
       <ul>
@@ -23,8 +22,9 @@
     </nav>
   </header>
 
+  <!-- Main -->
   <main>
-    <!-- Hero (轮播)区: 背景可全屏显示 -->
+    <!-- Hero区：高度改为100vh，使其在桌面端铺满可视区 -->
     <section class="hero">
       <div class="hero-slides" id="hero-slides">
         <div class="hero-slide" style="background-image: url('slide1.jpg');"></div>
@@ -47,6 +47,7 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-info">
       <div class="company-info">
@@ -57,7 +58,7 @@
       </div>
       <div class="social-media">
         <h3>社交媒体</h3>
-        <!-- 引用CDN或本地Logo均可 -->
+        <!-- WhatsApp -->
         <a 
           href="https://wa.me/12817839998" 
           target="_blank" 
@@ -71,6 +72,7 @@
           />
           <span>WhatsApp</span>
         </a>
+        <!-- LinkedIn -->
         <a 
           href="https://linkedin.com/in/oliver-f-448b8a287" 
           target="_blank" 
@@ -84,10 +86,12 @@
           />
           <span>LinkedIn</span>
         </a>
+        <!-- Skype -->
         <a href="https://web.skype.com/?openPstnPage=true" target="_self" aria-label="Skype">
           <img src="Skype Logo.png" alt="Skype Logo" class="social-icon">
           <span>Skype</span>
         </a>
+        <!-- WeChat -->
         <a href="weixin://dl/chat?wxid=wxid_kesvxwp296ci12" aria-label="WeChat">
           <img src="WeChat Logo.png" alt="WeChat Logo" class="social-icon">
           <span>WeChat</span>
