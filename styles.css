@@ -57,11 +57,11 @@ main {
   padding: 20px;
 }
 
-/* Hero：桌面端210vh */
+/* Hero：桌面端160vh */
 .hero {
   position: relative;
   width: 100%;
-  height: 210vh; 
+  height: 160vh; 
   background-color: #eee;
   overflow: hidden;
 }
