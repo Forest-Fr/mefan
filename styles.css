@@ -12,7 +12,7 @@ body {
   line-height: 1.6;
 }
 
-/* 缩小Logo + 留点空隙 */
+/* Logo尺寸进一步缩小 */
 .logo-img {
   width: 80px;
   margin: 10px;
@@ -24,8 +24,7 @@ header {
   border-bottom: 1px solid #eaeaea;
   position: fixed;
   width: 100%;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   z-index: 1000;
   padding: 10px;
   display: flex;
@@ -53,11 +52,11 @@ header nav ul li a.active {
 }
 
 main {
-  margin-top: 100px; /* 预留头部空间 */
+  margin-top: 100px; /* 给头部留空间 */
   padding: 20px;
 }
 
-/* Hero区 - 桌面端改回80vh,移动端调低 */
+/* Hero区：桌面端80vh(全屏效果)，移动端会改成50vh */
 .hero {
   position: relative;
   width: 100%;
@@ -124,7 +123,7 @@ main {
   color: #555;
 }
 
-/* 产品列表 */
+/* 产品列表区 */
 .product-list-section {
   background-color: #fff;
   margin-bottom: 40px;
@@ -238,7 +237,15 @@ main {
   border-radius: 5px;
 }
 
-/* Footer信息区 */
+/* Product Detail(子页面) */
+.product-detail-section {
+  background-color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+}
+
+/* Footer */
 footer {
   background-color: #f9f9f9;
   padding: 20px 20px;
@@ -290,7 +297,7 @@ copyright {
   margin-top: 10px;
 }
 
-/* 响应式：移动端继续保持hero=50vh */
+/* 响应式: 移动端hero 50vh */
 @media (max-width: 768px) {
   header {
     display: block;
@@ -304,6 +311,7 @@ copyright {
     display: inline-block;
     margin: 0 15px 10px 0;
   }
+
   .hero {
     height: 50vh;
   }
@@ -313,8 +321,9 @@ copyright {
   .hero-content p {
     font-size: 1rem;
   }
+
   .logo-img {
-    width: 60px; 
+    width: 60px;
   }
   footer .footer-info {
     flex-direction: column;
