@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MeFan - Experience Wireless Freedom</title>
+  <title>MeFan - 让体验无线自由</title>
+  <!-- 引入CSS、JS -->
   <link rel="stylesheet" href="styles.css">
   <script src="scripts.js" defer></script>
 </head>
 <body>
   <!-- Header -->
   <header>
-    <!-- 缩小Logo，避免头部过大 -->
+    <!-- Logo缩小，防止占过多空间 -->
     <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img" />
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="products.html">Products</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Hero Section：加大桌面端高度，如80vh -->
+    <!-- Hero (轮播)区: 背景可全屏显示 -->
     <section class="hero">
       <div class="hero-slides" id="hero-slides">
         <div class="hero-slide" style="background-image: url('slide1.jpg');"></div>
@@ -31,8 +32,8 @@
         <div class="hero-slide" style="background-image: url('slide3.jpg');"></div>
       </div>
       <div class="hero-content">
-        <h1>MeFan - 体验无线自由</h1>
-        <p>享受无线蓝牙耳机带来的清晰音质与便捷交互。</p>
+        <h1>MeFan - 让体验无线自由</h1>
+        <p>通过我们的无线蓝牙耳机享受无缝连接和清晰的音质。</p>
         <a href="products.html" class="btn">了解更多</a>
       </div>
     </section>
@@ -40,11 +41,12 @@
     <!-- 简要介绍区 -->
     <section class="intro-section">
       <h2>为什么选择 MeFan?</h2>
-      <p>我们专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。</p>
+      <p>
+        我们专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。
+      </p>
     </section>
   </main>
 
-  <!-- Footer：保留公司信息 + 社交链接 + EmailJS可选 -->
   <footer>
     <div class="footer-info">
       <div class="company-info">
@@ -55,7 +57,7 @@
       </div>
       <div class="social-media">
         <h3>社交媒体</h3>
-        <!-- WhatsApp -->
+        <!-- 引用CDN或本地Logo均可 -->
         <a 
           href="https://wa.me/12817839998" 
           target="_blank" 
@@ -69,7 +71,6 @@
           />
           <span>WhatsApp</span>
         </a>
-        <!-- LinkedIn -->
         <a 
           href="https://linkedin.com/in/oliver-f-448b8a287" 
           target="_blank" 
@@ -83,17 +84,14 @@
           />
           <span>LinkedIn</span>
         </a>
-        <!-- Skype -->
         <a href="https://web.skype.com/?openPstnPage=true" target="_self" aria-label="Skype">
           <img src="Skype Logo.png" alt="Skype Logo" class="social-icon">
           <span>Skype</span>
         </a>
-        <!-- WeChat -->
         <a href="weixin://dl/chat?wxid=wxid_kesvxwp296ci12" aria-label="WeChat">
           <img src="WeChat Logo.png" alt="WeChat Logo" class="social-icon">
           <span>WeChat</span>
         </a>
-        <!-- 预留FB,Twitter,Instagram -->
         <p style="color:#aaa; margin-top:10px;">(Facebook, Twitter, Instagram 预留)</p>
       </div>
     </div>
