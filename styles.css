@@ -121,6 +121,38 @@ main {
   font-size: 1.8rem;
   margin-bottom: 20px;
 }
+.use-case-section {
+  background-color: #fff;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.use-case-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.use-case-item {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 6px;
+  width: 200px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+
+.use-case-item:hover {
+  transform: translateY(-3px);
+}
+
+.use-case-item h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
 
 /* product-list-section */
 .product-list-section {
