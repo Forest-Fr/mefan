@@ -1,27 +1,27 @@
 /***************************************************
  * scripts.js
- * -----------------------------------------------
- * 1. Hero轮播: 100vh全屏
+ * 
+ * 1. Hero轮播：全屏 100vh (PC端)，自动切换
  * 2. EmailJS表单提交
- * 3. 预留更多JS功能(对比、3D模型等) 
+ * 3. 预留更多JS功能(对比按钮、3D旋转、在线聊天) 
  ***************************************************/
 
-// Hero轮播
+/* 轮播 */
 const heroSlides = document.getElementById('hero-slides');
 if (heroSlides) {
   let currentIndex = 0;
   const totalSlides = heroSlides.children.length;
-  
+
   setInterval(() => {
     currentIndex = (currentIndex + 1) % totalSlides;
     heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
   }, 5000);
 }
 
-// EmailJS整合
+/* EmailJS */
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof emailjs !== 'undefined') {
-    emailjs.init("HXCThZROMytOt-wyp"); // 公共密钥
+    emailjs.init("HXCThZROMytOt-wyp");  // 公共密钥
   }
 
   const contactForm = document.getElementById("contactForm");
@@ -40,7 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 1. 预留对比弹窗 / 3D旋转 / 动态推荐等功能
-  // 2. 预留移动端在线聊天点击事件
-  // ...
+  // 1. 预留对比按钮点击事件
+  const compareBtn = document.querySelector(".compare-features .btn");
+  if(compareBtn) {
+    compareBtn.addEventListener("click", () => {
+      alert("对比功能暂未实现 (预留)！");
+      // 未来可在此跳转对比页面或弹出对比Modal
+    });
+  }
+
+  // 2. 预留 3D模型 or 动态推荐 logic
+  // 3. 预留 在线聊天 or FAQ panel
 });
