@@ -121,6 +121,7 @@ main {
   font-size: 1.8rem;
   margin-bottom: 20px;
 }
+/* 预留模块样式 - use-case, brand-story */
 .use-case-section {
   background-color: #fff;
   padding: 40px 20px;
@@ -153,7 +154,9 @@ main {
   font-size: 1.2rem;
   color: #333;
 }
-
+.brand-story-section h2 {
+  margin-bottom: 20px;
+}
 /* product-list-section */
 .product-list-section {
   background-color: #fff;
