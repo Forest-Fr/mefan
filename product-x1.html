@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MeFan X1 - Product Detail</title>
-  <!-- 引入全站CSS和JS -->
   <link rel="stylesheet" href="styles.css">
   <script src="scripts.js" defer></script>
 </head>
 <body>
-  <!-- 头部：与其他页面相同 -->
-  <header>
+  <!-- 顶部 -->
+  <header class="header-gradient">
     <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img" />
     <nav>
       <ul>
@@ -22,65 +21,44 @@
     </nav>
   </header>
 
-  <!-- 主内容区 -->
   <main>
-    <!-- 产品详情主体部分 -->
+    <!-- MeFan X1详情 -->
     <section class="product-detail-section">
       <h2>MeFan X1</h2>
-      <!-- 主产品图片 -->
       <img 
-        src="MeFan X1.png" 
+        src="slide1.jpg" 
         alt="MeFan X1" 
-        style="
-          max-width: 300px; 
-          margin: 20px auto; 
-          display: block; 
-          border-radius: 6px;
-        "
+        style="max-width:300px; display:block; margin:20px auto; border-radius:6px;"
       >
-      <p style="max-width: 600px; margin: 20px auto; color: #555; text-align: center;">
-        MeFan X1 主打<b>高音质与深度降噪</b>，能在嘈杂环境中依旧让您畅享音乐。<br/>
-        轻巧便携的充电盒，以及长续航电池，让通勤或差旅都畅快无忧。<br/>
-        专为运动场景设计的防水防汗构造，也让健身时的音乐体验更加放心。
+      <p style="max-width:600px; margin:20px auto; color:#555; text-align:center;">
+        MeFan X1 主打<b>高音质与深度降噪</b>，轻松应对通勤与运动场景。<br/>
+        结合舒适的佩戴设计和持久电池续航，让您随时随地享受音乐的美好。
       </p>
 
-      <!-- 预留 技术参数区块 (可在这放蓝牙版本、电池续航等) -->
-      <div class="tech-spec-section" style="margin-top: 30px;">
+      <!-- 技术参数/用户评价/3D展示 预留区 -->
+      <div class="tech-spec-section" style="margin-top:30px;">
         <h2>技术参数（预留）</h2>
-        <ul style="list-style: none; padding: 0; text-align:center;">
-          <li>电池续航：约8小时(耳机) + 24小时(充电盒)</li>
+        <ul style="list-style:none; padding:0; text-align:center;">
+          <li>电池续航：约8+24小时</li>
           <li>蓝牙版本：5.2</li>
           <li>降噪等级：ANC深度降噪</li>
-          <li>频响范围：20Hz - 20kHz</li>
           <li>防水等级：IPX5</li>
         </ul>
       </div>
-
-      <!-- 预留 用户评价 / 3D展示 / 升级产品推荐 -->
-      <div class="user-review-section" style="margin-top: 30px;">
+      <div class="user-review-section" style="margin-top:30px;">
         <h2>用户评价（预留）</h2>
-        <p>在此可放置真实用户评价、星级评分或图片分享。</p>
-      </div>
-
-      <div class="threeD-model-section" style="margin-top: 30px;">
-        <h2>3D旋转展示（预留）</h2>
-        <p>若需3D旋转，可在此引入WebGL或第三方库示例。</p>
-      </div>
-
-      <div class="upgrade-recommend-section" style="margin-top: 30px;">
-        <h2>升级产品推荐（预留）</h2>
-        <p>如已有更高端型号MeFan Pro，可在此展示对比或引导用户购买更高级的版本。</p>
+        <p>可在此显示真实用户评价、星级评分、图片分享等。</p>
       </div>
 
       <!-- 返回产品列表按钮 -->
-      <p style="text-align: center; margin-top: 40px;">
+      <p style="text-align:center; margin:40px 0;">
         <a href="products.html" class="btn">返回产品列表</a>
       </p>
     </section>
   </main>
 
-  <!-- 底部：与其他页面相同 -->
-  <footer>
+  <!-- 深蓝页脚 -->
+  <footer class="dark-footer">
     <div class="footer-info">
       <div class="company-info">
         <h3>MeFan Solutions</h3>
@@ -98,7 +76,7 @@
         >
           <img 
             src="https://cdn-icons-png.flaticon.com/512/124/124034.png" 
-            alt="WhatsApp icon" 
+            alt="WhatsApp" 
             class="social-icon"
           />
           <span>WhatsApp</span>
@@ -117,20 +95,16 @@
           <span>LinkedIn</span>
         </a>
         <a href="https://web.skype.com/?openPstnPage=true" target="_self" aria-label="Skype">
-          <img src="Skype Logo.png" alt="Skype Logo" class="social-icon">
+          <img src="Skype Logo.png" alt="Skype" class="social-icon">
           <span>Skype</span>
         </a>
         <a href="weixin://dl/chat?wxid=wxid_kesvxwp296ci12" aria-label="WeChat">
           <img src="WeChat Logo.png" alt="WeChat Logo" class="social-icon">
           <span>WeChat</span>
         </a>
-        <p style="color:#aaa; margin-top:10px;">(Facebook, Twitter, Instagram 预留)</p>
       </div>
     </div>
     <div class="footer-extend">
-      <p>FAQ / 多语言 / 在线客服（预留）</p>
-    </div>
-    <div class="copyright">
       <p>&copy; 2025 MeFan. All rights reserved.</p>
     </div>
   </footer>
