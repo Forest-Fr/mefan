@@ -4,12 +4,14 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MeFan - Contact</title>
+  <!-- EmailJS 前端如需 -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
   <link rel="stylesheet" href="styles.css">
   <script src="scripts.js" defer></script>
 </head>
 <body>
-  <header>
+  <!-- 顶部：渐变 -->
+  <header class="header-gradient">
     <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img"/>
     <nav>
       <ul>
@@ -23,8 +25,9 @@
 
   <main>
     <section class="contact-section">
-      <h2>联系我们</h2>
-      <p>如果您有任何疑问或建议，请通过以下方式与我们取得联系。</p>
+      <!-- 表单标题增加蓝色底线/阴影效果 -->
+      <h2 class="contact-title">联系我们</h2>
+      <p>如有任何疑问或建议，请通过以下方式与我们取得联系。</p>
 
       <form id="contactForm" class="contact-form">
         <div class="form-group">
@@ -43,14 +46,18 @@
       </form>
     </section>
 
-    <!-- 预留“FAQ”或“在线聊天”模块 -->
+    <!-- 模块与页脚之间，增加浅灰色分割线 -->
+    <hr class="section-divider"/>
+
+    <!-- FAQ / 在线聊天模块预留 -->
     <section class="extra-support-section">
-      <h2>FAQ & 在线支持（预留）</h2>
-      <p>可在此添加常见问题解答，或嵌入在线聊天插件。</p>
+      <h2>FAQ（预留）</h2>
+      <p>在此添加常见问题解答；或集成在线聊天插件。</p>
     </section>
   </main>
 
-  <footer>
+  <!-- 深蓝页脚 -->
+  <footer class="dark-footer">
     <div class="footer-info">
       <div class="company-info">
         <h3>MeFan Solutions</h3>
@@ -65,24 +72,20 @@
           <span>WhatsApp</span>
         </a>
         <a href="https://linkedin.com/in/oliver-f-448b8a287" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" class="social-icon">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn icon" class="social-icon">
           <span>LinkedIn</span>
         </a>
         <a href="https://web.skype.com/?openPstnPage=true" target="_self" aria-label="Skype">
-          <img src="Skype Logo.png" alt="Skype" class="social-icon">
+          <img src="Skype Logo.png" alt="Skype Logo" class="social-icon">
           <span>Skype</span>
         </a>
         <a href="weixin://dl/chat?wxid=wxid_kesvxwp296ci12" aria-label="WeChat">
-          <img src="WeChat Logo.png" alt="WeChat" class="social-icon">
+          <img src="WeChat Logo.png" alt="WeChat Logo" class="social-icon">
           <span>WeChat</span>
         </a>
-        <p style="color:#aaa; margin-top:10px;">(Facebook, Twitter, Instagram 预留)</p>
       </div>
     </div>
     <div class="footer-extend">
-      <p>在线聊天插件 / 更多支持入口（预留）</p>
-    </div>
-    <div class="copyright">
       <p>&copy; 2025 MeFan. All rights reserved.</p>
     </div>
   </footer>
