@@ -8,9 +8,8 @@
   <script src="scripts.js" defer></script>
 </head>
 <body>
-  <!-- Header -->
+  <!-- 头部 -->
   <header>
-    <!-- Logo缩小，防止头部过大 -->
     <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img" />
     <nav>
       <ul>
@@ -22,9 +21,9 @@
     </nav>
   </header>
 
-  <!-- Main -->
+  <!-- 主内容 -->
   <main>
-    <!-- Hero区：高度改为130vh，使其在桌面端铺满可视区 -->
+    <!-- Hero区（全屏铺满） -->
     <section class="hero">
       <div class="hero-slides" id="hero-slides">
         <div class="hero-slide" style="background-image: url('slide1.jpg');"></div>
@@ -38,16 +37,42 @@
       </div>
     </section>
 
-    <!-- 简要介绍区 -->
+    <!-- “为什么选择 MeFan?” 简要介绍区 -->
     <section class="intro-section">
       <h2>为什么选择 MeFan?</h2>
-      <p>
-        我们专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。
-      </p>
+      <p>我们专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。</p>
+    </section>
+
+    <!-- 1. 预留“场景 / 用户群体”或“解决方案”模块 -->
+    <section class="use-case-section">
+      <h2>应用场景</h2>
+      <p>（在这里可以放置“运动、通勤、游戏、会议”等多种使用场景的展示）</p>
+      <div class="use-case-grid">
+        <!-- 未来可插入具体图片/文字/动态特效 -->
+        <div class="use-case-item">
+          <h3>运动场景</h3>
+          <p>运动时的防水、防汗表现……</p>
+        </div>
+        <div class="use-case-item">
+          <h3>通勤场景</h3>
+          <p>地铁、公交、办公室等噪音环境表现……</p>
+        </div>
+        <div class="use-case-item">
+          <h3>会议场景</h3>
+          <p>语音通话、降噪麦克风等……</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 预留“Banner下增加品牌故事”模块 -->
+    <section class="brand-story-section">
+      <h2>品牌故事（预留）</h2>
+      <p>这里可添加“MeFan”品牌历程或理念的简短介绍，突出高品质和技术创新。</p>
+      <!-- 可未来加上展开阅读 / 动态特效等 -->
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- 底部 -->
   <footer>
     <div class="footer-info">
       <div class="company-info">
@@ -58,46 +83,28 @@
       </div>
       <div class="social-media">
         <h3>社交媒体</h3>
-        <!-- WhatsApp -->
-        <a 
-          href="https://wa.me/12817839998" 
-          target="_blank" 
-          rel="noopener"
-          aria-label="WhatsApp"
-        >
-          <img 
-            src="https://cdn-icons-png.flaticon.com/512/124/124034.png" 
-            alt="WhatsApp icon" 
-            class="social-icon"
-          />
+        <a href="https://wa.me/12817839998" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp icon" class="social-icon">
           <span>WhatsApp</span>
         </a>
-        <!-- LinkedIn -->
-        <a 
-          href="https://linkedin.com/in/oliver-f-448b8a287" 
-          target="_blank" 
-          rel="noopener"
-          aria-label="LinkedIn"
-        >
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" 
-            alt="LinkedIn icon" 
-            class="social-icon"
-          />
+        <a href="https://linkedin.com/in/oliver-f-448b8a287" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn icon" class="social-icon">
           <span>LinkedIn</span>
         </a>
-        <!-- Skype -->
         <a href="https://web.skype.com/?openPstnPage=true" target="_self" aria-label="Skype">
           <img src="Skype Logo.png" alt="Skype Logo" class="social-icon">
           <span>Skype</span>
         </a>
-        <!-- WeChat -->
         <a href="weixin://dl/chat?wxid=wxid_kesvxwp296ci12" aria-label="WeChat">
           <img src="WeChat Logo.png" alt="WeChat Logo" class="social-icon">
           <span>WeChat</span>
         </a>
         <p style="color:#aaa; margin-top:10px;">(Facebook, Twitter, Instagram 预留)</p>
       </div>
+    </div>
+    <div class="footer-extend">
+      <!-- 3. 预留多语言切换、在线聊天等位置 -->
+      <p>多语言切换（预留） | 在线聊天(预留) | 未来可插更多功能...</p>
     </div>
     <div class="copyright">
       <p>&copy; 2025 MeFan. All rights reserved.</p>
