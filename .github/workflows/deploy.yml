@@ -3,7 +3,7 @@ name: Deploy to InfinityFree
 on:
   push:
     branches:
-      - main  # 当推送到 main 分支时触发
+      - main
 
 jobs:
   deploy:
@@ -11,13 +11,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Upload files via FTP
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+    - name: Upload via FTP
+      uses: sebastianpopp/ftp-deploy-action@v1.1.0
       with:
-        server: ftpupload.net  # InfinityFree 的 FTP 服务器
-        username: if0_38083790 # 替换为您的 FTP 用户名
-        password: ${{ secrets.FTP_PASSWORD }}  # 在 GitHub Secrets 中设置
-        local-dir: ./  # 要上传的目录（当前仓库根目录）
-        server-dir: /htdocs  # InfinityFree 的目标文件夹
+        server: ftpupload.net
+        username: if0_38083790
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        remote-dir: /htdocs
