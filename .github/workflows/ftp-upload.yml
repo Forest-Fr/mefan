@@ -3,16 +3,16 @@ name: Auto Upload to InfinityFree
 on:
   push:
     branches:
-      - main  # 当 main 分支有更新时触发
+      - main  # 监听 main 分支的更新
 
 jobs:
   upload:
-    runs-on: self-hosted  # 使用您配置的自托管 Runner
+    runs-on: self-hosted  # 指定使用自托管 Runner
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3  # 检出最新的代码
 
-      - name: Install Python
+      - name: Install Python and dependencies
         uses: actions/setup-python@v3
         with:
           python-version: 3.9
@@ -23,11 +23,12 @@ jobs:
           from ftplib import FTP
           import os
 
+          # FTP 配置
           HOST = "ftpupload.net"
           USERNAME = "if0_38083790"
           PASSWORD = "99380VVV"
-          LOCAL_FOLDER = "html"  # 仓库中的 HTML 文件夹
-          REMOTE_FOLDER = "/htdocs"
+          LOCAL_FOLDER = "./html"  # 本地 HTML 文件夹路径
+          REMOTE_FOLDER = "/htdocs"  # 远程上传路径
 
           def upload_files():
               ftp = FTP()
@@ -47,4 +48,3 @@ jobs:
 
           upload_files()
           EOF
-
