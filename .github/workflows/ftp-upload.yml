@@ -1,21 +1,23 @@
-name: FTP Upload Workflow
+name: FTP Deploy
 
 on:
   push:
     branches:
-      - main # 确保这里是你的主分支名称
+      - main  # 在 main 分支推送时触发工作流
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: self-hosted  # 或 ubuntu-latest，取决于是否使用 GitHub Runner
+
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3 # 确保代码被正确拉取
+        uses: actions/checkout@v3  # 拉取仓库代码
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.5.0
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.5.0  # 使用 FTP Deploy Action
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: ${{ secrets.FTP_SERVER }}  # 从 Secrets 加载 FTP 信息
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
+          local-dir: ./  # 要上传的本地目录
+          server-dir: /htdocs/  # InfinityFree 的目标目录
