@@ -1,16 +1,21 @@
+name: FTP Upload Workflow
+
+on:
+  push:
+    branches:
+      - main  # 当推送到 main 分支时触发
+
 jobs:
   deploy:
     runs-on: self-hosted
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # 确保代码被检出
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.5.0
         with:
-          server: ftp://${{ secrets.FTP_SERVER }}
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./htdocs
-        env:
-          ACTIONS_STEP_DEBUG: true
-          ACTIONS_RUNNER_DEBUG: true
+          local-dir: ./  # 确保这里指向需要上传的目录
