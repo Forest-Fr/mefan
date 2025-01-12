@@ -1,50 +1,8 @@
-name: Auto Upload to InfinityFree
-
-on:
-  push:
-    branches:
-      - main  # 监听 main 分支的更新
-
-jobs:
-  upload:
-    runs-on: self-hosted  # 指定使用自托管 Runner
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3  # 检出最新的代码
-
-      - name: Install Python and dependencies
-        uses: actions/setup-python@v3
-        with:
-          python-version: 3.9
-
-      - name: Upload files to InfinityFree
-        run: |
-          python <<EOF
-          from ftplib import FTP
-          import os
-
-          # FTP 配置
-          HOST = "ftpupload.net"
-          USERNAME = "if0_38083790"
-          PASSWORD = "99380VVV"
-          LOCAL_FOLDER = "./html"  # 本地 HTML 文件夹路径
-          REMOTE_FOLDER = "/htdocs"  # 远程上传路径
-
-          def upload_files():
-              ftp = FTP()
-              ftp.connect(HOST, 21)
-              ftp.login(USERNAME, PASSWORD)
-              print("成功连接到 FTP 服务器！")
-              ftp.cwd(REMOTE_FOLDER)
-
-              for root, dirs, files in os.walk(LOCAL_FOLDER):
-                  for file in files:
-                      local_path = os.path.join(root, file)
-                      with open(local_path, "rb") as f:
-                          ftp.storbinary(f"STOR {file}", f)
-
-              ftp.quit()
-              print("所有文件上传完成！")
-
-          upload_files()
-          EOF
+- name: Deploy to FTP server
+  uses: SamKirkland/FTP-Deploy-Action@4.3.0
+  with:
+    server: ftpupload.net
+    username: ${{ secrets.USERNAME }}
+    password: ${{ secrets.PASSWORD }}
+    local-dir: ./html
+    server-dir: /htdocs
