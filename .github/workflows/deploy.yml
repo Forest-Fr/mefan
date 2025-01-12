@@ -8,16 +8,15 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Upload via FTP
-      uses: sebastianpopp/ftp-deploy-action@v1.1.0
-      with:
-        server: ftpupload.net
-        username: if0_38083790
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./
-        remote-dir: /htdocs
+      - name: Upload to FTP
+        uses: sebastianpopp/ftp-deploy-action@v1.1
+        with:
+          server: ftpupload.net
+          username: FTP_USERNAME
+          password: FTP_PASSWORD
+          local-dir: ./
+          remote-dir: /htdocs
