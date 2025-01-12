@@ -3,19 +3,29 @@ name: Deploy to InfinityFree
 on:
   push:
     branches:
-      - main
+      - main  # 当推送到 main 分支时触发部署
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Upload to FTP
-        uses: sebastianpopp/ftp-deploy-action@v1.1
+      # 安装依赖并构建项目 (如果你是纯静态项目，可以省略此步)
+      - name: Build
+        run: |
+          npm install
+          npm run build
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ftpupload.net
-          username: FTP_USERNAME
-          password: FTP_PASSWORD
-          local-dir: ./
-          remote-dir: /htdocs
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # InfinityFree 一般需要将文件上传到 /htdocs 下
+          server-dir: /htdocs
+          # 如果你的编译输出目录在 build/，请改为 ./build
+          local-dir: ./build
+          # 默认就是 passive mode，一般不用再额外开启
