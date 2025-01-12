@@ -1,1 +1,50 @@
+name: Auto Upload to InfinityFree
+
+on:
+  push:
+    branches:
+      - main  # 当 main 分支有更新时触发
+
+jobs:
+  upload:
+    runs-on: self-hosted  # 使用您配置的自托管 Runner
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+
+      - name: Upload files to InfinityFree
+        run: |
+          python <<EOF
+          from ftplib import FTP
+          import os
+
+          HOST = "ftpupload.net"
+          USERNAME = "if0_38083790"
+          PASSWORD = "99380VVV"
+          LOCAL_FOLDER = "html"  # 仓库中的 HTML 文件夹
+          REMOTE_FOLDER = "/htdocs"
+
+          def upload_files():
+              ftp = FTP()
+              ftp.connect(HOST, 21)
+              ftp.login(USERNAME, PASSWORD)
+              print("成功连接到 FTP 服务器！")
+              ftp.cwd(REMOTE_FOLDER)
+
+              for root, dirs, files in os.walk(LOCAL_FOLDER):
+                  for file in files:
+                      local_path = os.path.join(root, file)
+                      with open(local_path, "rb") as f:
+                          ftp.storbinary(f"STOR {file}", f)
+
+              ftp.quit()
+              print("所有文件上传完成！")
+
+          upload_files()
+          EOF
 
