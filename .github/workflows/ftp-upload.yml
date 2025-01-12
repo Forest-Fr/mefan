@@ -1,22 +1,7 @@
-name: Auto Upload to InfinityFree
-
-on:
-  push:
-    branches:
-      - main  # 监听 main 分支的更新
-
-jobs:
-  deploy:
-    runs-on: self-hosted  # 使用自托管 Runner
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3  # 检出代码到 Runner
-
-      - name: Deploy files to InfinityFree
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
-        with:
-          server: ftpupload.net
-          username: ${{ secrets.USERNAME }}  # 在 GitHub Secrets 中配置 FTP 用户名
-          password: ${{ secrets.PASSWORD }}  # 在 GitHub Secrets 中配置 FTP 密码
-          local-dir: ./html                  # 本地文件夹路径
-          server-dir: /htdocs                # 远程 FTP 目标路径
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.5.0
+      with:
+        server: ftp://your-ftp-server.com
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./  # 本地上传的文件夹
