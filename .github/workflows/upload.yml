@@ -1,9 +1,24 @@
-- name: 通过 FTP 上传
-  uses: SamKirkland/FTP-Deploy-Action@4.3.2
-  with:
-    server: "ftpupload.net"
-    username: ${{ secrets.FTP_USERNAME }}
-    password: ${{ secrets.FTP_PASSWORD }}
-    local-dir: "./" # runner 自动克隆后的仓库根目录
-    server-dir: "/htdocs/" # FTP 的目标目录
-    method: "git-ftp" # 只上传改动的文件
+name: FTP Deployment
+
+on:
+  push:
+    branches:
+      - main  # 触发分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.3.2
+      with:
+        server: "ftpupload.net"
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: "./"       # 仓库根目录，或指定子目录
+        server-dir: "/htdocs/" # FTP 目标目录
+        method: "git-ftp"    # 只上传改动的文件
