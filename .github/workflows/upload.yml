@@ -1,24 +1,8 @@
-name: FTP Deployment
-
-on:
-  push:
-    branches:
-      - main  # 仅在 main 分支触发
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Deploy via FTP
-      uses: SamKirkland/FTP-Deploy-Action@4.3.2
-      with:
-        server: "ftpupload.net"
-        username: ${{ secrets.FTP_USERNAME }}  # 确保 FTP_USERNAME 在 Secrets 中存在
-        password: ${{ secrets.FTP_PASSWORD }}  # 确保 FTP_PASSWORD 在 Secrets 中存在
-        local-dir: "./"  # 需要上传的本地目录
-        server-dir: "/htdocs/"  # 服务器目标目录
-        port: 21  # FTP 端口号，默认是 21
+- name: FTP 部署
+  uses: SamKirkland/FTP-Deploy-Action@4.3.2
+  with:
+    server: "ftpupload.net"
+    username: ${{ secrets.FTP_USERNAME }}
+    password: ${{ secrets.FTP_PASSWORD }}
+    local-dir: "./"
+    server-dir: "/htdocs/"
