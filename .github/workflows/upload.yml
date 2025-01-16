@@ -3,7 +3,7 @@ name: FTP Deployment
 on:
   push:
     branches:
-      - main  # 触发分支
+      - main  # 仅在 main 分支触发
 
 jobs:
   deploy:
@@ -17,8 +17,8 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.2
       with:
         server: "ftpupload.net"
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: "./"       # 仓库根目录，或指定子目录
-        server-dir: "/htdocs/" # FTP 目标目录
-        method: "git-ftp"    # 只上传改动的文件
+        username: ${{ secrets.FTP_USERNAME }}  # 确保 FTP_USERNAME 在 Secrets 中存在
+        password: ${{ secrets.FTP_PASSWORD }}  # 确保 FTP_PASSWORD 在 Secrets 中存在
+        local-dir: "./"  # 需要上传的本地目录
+        server-dir: "/htdocs/"  # 服务器目标目录
+        port: 21  # FTP 端口号，默认是 21
