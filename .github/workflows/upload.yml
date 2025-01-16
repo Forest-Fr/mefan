@@ -1,0 +1,23 @@
+name: Upload to InfinityFree
+
+on:
+  push:
+    branches:
+      - main  # 触发的分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Upload via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.3.2
+      with:
+        server: "ftpupload.net"
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: "./"  # 仓库中的目录
+        server-dir: "/htdocs/"  # FTP 的目标目录
