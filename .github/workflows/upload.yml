@@ -1,8 +1,9 @@
-- name: Upload via FTP
+- name: 通过 FTP 上传
   uses: SamKirkland/FTP-Deploy-Action@4.3.2
   with:
     server: "ftpupload.net"
-    username: ${{ secrets.FTP_USERNAME }}  # Secrets 引用
+    username: ${{ secrets.FTP_USERNAME }}
     password: ${{ secrets.FTP_PASSWORD }}
-    local-dir: "./"  # 本地需要上传的文件夹
-    server-dir: "/htdocs/"  # FTP 的目标目录
+    local-dir: "./" # runner 自动克隆后的仓库根目录
+    server-dir: "/htdocs/" # FTP 的目标目录
+    method: "git-ftp" # 只上传改动的文件
