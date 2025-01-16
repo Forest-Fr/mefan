@@ -1,8 +1,22 @@
-- name: FTP 部署
-  uses: SamKirkland/FTP-Deploy-Action@4.3.2
-  with:
-    server: "ftpupload.net"
-    username: ${{ secrets.FTP_USERNAME }}
-    password: ${{ secrets.FTP_PASSWORD }}
-    local-dir: "./"
-    server-dir: "/htdocs/"
+name: FTP 部署
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: FTP 部署
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: "ftpupload.net"
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: "./"
+          server-dir: "/htdocs/"
