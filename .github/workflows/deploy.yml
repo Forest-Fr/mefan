@@ -1,8 +1,0 @@
-- name: Deploy to InfinityFree via FTP
-  run: |
-    lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -e "
-    mirror -R ./ /htdocs; 
-    quit" ftp.upload.net
-  env:
-    FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-    FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
