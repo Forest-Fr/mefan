@@ -1,26 +1,8 @@
-name: Deploy to InfinityFree
-
-on:
-  push:
-    branches:
-      - main # 设置为你的默认分支，比如 main 或 master
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Install lftp
-      run: sudo apt-get install lftp
-
-    - name: Deploy to InfinityFree via FTP
-      run: |
-        lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -e "
-        mirror -R ./ /htdocs; 
-        bye" ftp.upload.net
-      env:
-        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+- name: Deploy to InfinityFree via FTP
+  run: |
+    lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -e "
+    mirror -R ./ /htdocs; 
+    quit" ftp.upload.net
+  env:
+    FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+    FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
