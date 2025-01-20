@@ -380,12 +380,16 @@ main {
 .highlight-btn:hover {
   background-color: #218838; 
 }
-
-/* 移动端(不变) */
 @media (max-width: 768px) {
+  /* 针对小屏幕调整导航栏 */
   .header-gradient {
-    display: block;
-    text-align: center;
+    height: 50px;  /* 在小屏幕上增加高度 */
+  }
+
+  /* 调整内容区的margin-top */
+  main {
+    margin-top: calc(50px + 20px);  /* 使用calc()动态调整 */
+  
   }
   .header-gradient nav {
     float: none;
