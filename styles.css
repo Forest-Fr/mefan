@@ -1,8 +1,8 @@
 /* ========== Reset & 基础 ========== */
 * {
-  margin-top: 0; /* 去掉顶部空白，直接紧接hero */
-  padding: 20px;
- 
+  margin: 0;/* 去掉顶部空白，直接紧接hero */
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
