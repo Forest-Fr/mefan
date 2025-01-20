@@ -1,8 +1,8 @@
 /* ========== Reset & 基础 ========== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin-top: 0; /* 去掉顶部空白，直接紧接hero */
+  padding: 20px;
+ 
 }
 
 body {
@@ -103,6 +103,8 @@ main {
   height: 100vh; 
   overflow: hidden;
   background-color: #eee;
+   margin-top: 0; /* 去掉任何可能的空白 */
+  padding: 0; /* 确保没有顶部空白 */
 }
 
 .hero-slides {
