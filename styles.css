@@ -1,71 +1,75 @@
-/* ========== Reset & 基础 ========== */
+/* ========== Reset & 基础 ========== */ 
 * {
-  margin: 0;
-  padding: 0;
+  margin: 0; 
+  padding: 0; 
   box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;  /* 使用Poppins字体 */
   background-color: #fff;
   color: #333;
   line-height: 1.6;
 }
 
-/* ========== Header Section (导航栏) ========== */
+/* 浅蓝色渐变导航 */
 .header-gradient {
-  background: linear-gradient(to right, #E7F3FF, #9BCBFF);
+  background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
   border-bottom: 1px solid #ddd;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 6px 20px;
+  padding: 10px;  /* 增加导航栏的padding */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+}
+
+.header-gradient nav {
+  margin-left: auto;
 }
 
 .header-gradient nav ul {
   list-style: none;
-  display: flex;
 }
 
 .header-gradient nav ul li {
-  margin-left: 20px;
+  display: inline-block;
+  margin-left: 30px;
 }
 
 .header-gradient nav ul li a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
-  transition: color 0.3s, background-color 0.3s;
-  padding: 10px;
+  transition: color 0.3s;
 }
 
-.header-gradient nav ul li a:hover {
-  color: #fff;
-  background-color: #007BFF;
-  border-radius: 5px;
-}
-
+.header-gradient nav ul li a:hover,
 .header-gradient nav ul li a.active {
-  color: #fff;
-  background-color: #007BFF;
-  border-radius: 5px;
+  color: #007BFF; /* 更亮的蓝色 */
 }
 
-/* ========== Hero Section (全屏背景轮播) ========== */
+/* Logo尺寸 */
+.logo-img {
+  width: 60px; /* 调整Logo大小 */
+  margin: 5px;
+}
+
+/* 主内容区：使用calc动态计算顶边距 */
+main {
+  padding: 20px;
+  margin-top: calc(60px + 20px);  /* 使用 calc() 动态计算，确保内容不被导航栏遮挡 */
+}
+
+/* Hero：全屏(桌面端) */
 .hero {
   position: relative;
   width: 100%;
-  height: 60vh; /* 修改为 60% 高度 */
+  height: 100vh; 
+  overflow: hidden;
   background-color: #eee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
 .hero-slides {
@@ -83,45 +87,42 @@ body {
 }
 
 .hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   max-width: 600px;
   width: 80%;
-  background-color: rgba(0, 0, 0, 0.6); /* 背景色透明度增强 */
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
   padding: 30px;
   border-radius: 10px;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .hero-content h1 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .hero-content p {
   font-size: 1.1rem;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .hero-content .btn {
   background-color: #007BFF;
   color: #fff;
-  padding: 12px 25px;
   border-radius: 5px;
   text-decoration: none;
-  font-size: 1.2rem;
-  transition: background-color 0.3s, transform 0.2s;
+  padding: 10px 20px;
 }
 
 .hero-content .btn:hover {
   background-color: #0056b3;
-  transform: scale(1.05);
 }
 
-/* ========== Main Content (主要内容区) ========== */
-main {
-  padding: 30px;
-}
-
+/* intro-section */
 .intro-section {
   background-color: #fff;
   padding: 40px 20px;
@@ -134,124 +135,46 @@ main {
   margin-bottom: 20px;
 }
 
-/* 产品列表区域 */
-.product-list-section {
-  margin-top: 40px;
-}
-
-.product-list-section h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+/* 场景应用卡片区：运动 / 通勤 / 会议 */
+.use-case-section {
+  background-color: #fff;
+  padding: 40px 20px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
-.product-list {
+.use-case-grid {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
 }
 
-.product-item {
-  width: 300px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-align: center;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+.use-case-item {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 6px;
+  width: 200px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
 }
 
-.product-item:hover {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+.use-case-item:hover {
   transform: translateY(-3px);
 }
 
-.product-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.product-item h3 {
-  margin-top: 15px;
+.use-case-item h3 {
+  margin-bottom: 10px;
   font-size: 1.2rem;
+  color: #333;
 }
 
-.product-item p {
-  color: #666;
-  padding: 0 20px;
-}
-
-.product-item .btn {
-  margin: 15px 0;
-  padding: 10px 20px;
-  background-color: #007BFF;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  transition: background-color 0.3s;
-}
-
-.product-item .btn:hover {
-  background-color: #0056b3;
-}
-
-/* ========== 表单和按钮样式 ========== */
-.contact-form {
-  max-width: 500px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.contact-form .form-group {
-  margin-bottom: 20px;
-}
-
-.contact-form label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.contact-form input, .contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.use-case-item p {
   font-size: 1rem;
+  color: #666;
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
-  border-color: #007BFF;
-}
-
-.contact-form button {
-  padding: 12px 20px;
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.1rem;
-}
-
-.contact-form button:hover {
-  background-color: #0056b3;
-}
-
-/* 页面间隔与分割线 */
-hr.section-divider {
-  margin: 40px 0;
-  border: none;
-  border-top: 1px solid #eee;
-}
-
-/* Footer 样式 */
+/* 深蓝色页脚 */
 .dark-footer {
   background-color: #1A1A1A;
   color: #fff;
@@ -260,12 +183,12 @@ hr.section-divider {
 }
 
 .dark-footer a {
-  color: #66ccff;
+  color: #66ccff; /* 浅蓝文字 */
   text-decoration: none;
 }
 
 .dark-footer a:hover {
-  color: #bee8ff;
+  color: #bee8ff; /* 悬停更亮一些 */
 }
 
 .dark-footer .footer-info {
@@ -273,11 +196,76 @@ hr.section-divider {
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.dark-footer .company-info,
+.dark-footer .social-media {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  padding: 15px 20px;
+  text-align: left;
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.dark-footer .company-info h3,
+.dark-footer .social-media h3 {
+  margin-bottom: 10px;
 }
 
 .social-icon {
   width: 20px;
   height: 20px;
   margin-right: 5px;
+}
+
+.footer-extend {
+  margin-top: 10px;
+  color: #ccc;
+}
+
+/* 按钮的额外样式 */
+.btn {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.highlight-btn {
+  background-color: #28A745; /* 亮绿色 */
+  color: #fff;
+}
+
+.highlight-btn:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 768px) {
+  .header-gradient {
+    height: 60px;  /* 增加导航栏高度 */
+  }
+
+  main {
+    margin-top: calc(60px + 20px);  /* 使用calc()动态调整 */
+  }
+
+  .hero {
+    height: 80vh; 
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .logo-img {
+    width: 50px;
+  }
+
+  .dark-footer .footer-info {
+    flex-direction: column;
+    align-items: center;
+  }
 }
