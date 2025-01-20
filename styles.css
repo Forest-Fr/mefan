@@ -19,8 +19,8 @@ body {
   color: #00796b; /* 文字颜色 */
   text-align: center;
   padding: 10px 0;
-
-  margin-top: 40px; /* 在导航栏下方添加空隙 */
+   z-index: 1001; /* 确保横幅在顶部 */
+  margin-top: 20px; /* 调整为合适的间隙，避免太大 */
 }
 
 .donate-btn {
