@@ -21,7 +21,7 @@ body {
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 5px; /* 缩小导航栏高度 */
+ padding: 5px; /* 可以减少导航栏的高度 */
   display: flex;
   align-items: center; /* 确保 logo 和菜单项垂直居中 */
 }
@@ -64,7 +64,7 @@ body {
   background-color: #e0f7fa; /* 淡蓝色背景 */
   color: #00796b; /* 按钮文字颜色 */
   text-align: center;
-  padding: 5px 0; /* 更小的高度 */
+  padding: 0; /* 这里将 padding 设置为 0 */
   z-index: 1001; /* 确保横幅在顶部 */
   margin-top: 0; /* 不再有顶部空白 */
 }
