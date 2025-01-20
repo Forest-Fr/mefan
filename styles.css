@@ -1,7 +1,7 @@
 /* ========== Reset & 基础 ========== */
 * {
-  margin: 0; 
-  padding: 0; 
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -11,30 +11,69 @@ body {
   color: #333;
   line-height: 1.6;
 }
-  display: inline-flex;
-  align-items: center;
-  color: #00796b; /* 按钮文字颜色 */
-  font-weight: bold;
+
+/* 浅蓝色渐变导航 */
+.header-gradient {
+  background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 5px; /* 缩小导航栏高度 */
+  display: flex;
+  align-items: center; /* 确保 logo 和菜单项垂直居中 */
+}
+
+.header-gradient nav {
+  margin-left: auto;
+}
+
+.header-gradient nav ul {
+  list-style: none;
+}
+
+.header-gradient nav ul li {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.header-gradient nav ul li a {
   text-decoration: none;
-  margin-left: 10px;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.header-gradient nav ul li a:hover,
+.header-gradient nav ul li a.active {
+  color: #007BFF;
+}
+
+/* Logo尺寸 */
+.logo-img {
+  width: 60px; /* 根据要求调整 logo 大小 */
+  margin: 10px;
 }
 
 /* 横幅（banner）样式 */
 .promo-banner {
   position: relative;
   width: 100%;
-  background-color:#e0f7fa; /* 选择与背景色协调的淡蓝色 */
-  color: #00796b; /* 文字颜色 */
+  background-color: #e0f7fa; /* 淡蓝色背景 */
+  color: #00796b; /* 按钮文字颜色 */
   text-align: center;
-  padding: 10px 0;
+  padding: 5px 0; /* 更小的高度 */
   z-index: 1001; /* 确保横幅在顶部 */
-  margin-top: 40px; /* 在导航栏下方添加空隙 */
+  margin-top: 0; /* 不再有顶部空白 */
 }
 
 .donate-btn {
   display: inline-flex;
   align-items: center;
-  color: #00796b; /* 按钮文字颜色 */
+  justify-content: center; /* 居中 */
+  color: #00796b;
   font-weight: bold;
   text-decoration: none;
   margin-left: 10px;
@@ -51,46 +90,6 @@ body {
   text-decoration: underline;
 }
 
-/* 浅蓝色渐变导航 */
-.header-gradient {
-  background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
-  border-bottom: 1px solid #ddd;
-  position: relative; /* 保持在自然流式布局中 */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  padding: 10px; /* 增加导航栏的高度 */
-  display: flex;
-  align-items: center;
-}
-.header-gradient nav {
-  margin-left: auto;
-}
-.header-gradient nav ul {
-  list-style: none;
-}
-.header-gradient nav ul li {
-  display: inline-block;
-  margin-left: 30px;
-}
-.header-gradient nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-.header-gradient nav ul li a:hover,
-.header-gradient nav ul li a.active {
-  color: #007BFF; /* 更亮的蓝色 */
-}
-
-/* Logo尺寸 */
-.logo-img {
-  width: 80px;
-  margin: 10px;
-}
-
 /* 主内容区：预留头部空间100px */
 main {
   margin-top: 100px;
@@ -105,18 +104,21 @@ main {
   overflow: hidden;
   background-color: #eee;
 }
+
 .hero-slides {
   display: flex;
   width: 100%;
   height: 100%;
   transition: transform 1s ease;
 }
+
 .hero-slide {
   min-width: 100%;
   height: 100%;
   background-position: center;
   background-size: cover;
 }
+
 .hero-content {
   position: absolute;
   top: 50%;
@@ -130,14 +132,17 @@ main {
   padding: 30px;
   border-radius: 10px;
 }
+
 .hero-content h1 {
   font-size: 2rem;
   margin-bottom: 15px;
 }
+
 .hero-content p {
   font-size: 1.1rem;
   margin-bottom: 15px;
 }
+
 .hero-content .btn {
   background-color: #007BFF;
   color: #fff;
@@ -145,6 +150,7 @@ main {
   text-decoration: none;
   padding: 10px 20px;
 }
+
 .hero-content .btn:hover {
   background-color: #0056b3;
 }
@@ -156,10 +162,12 @@ main {
   text-align: center;
   margin-bottom: 40px;
 }
+
 .intro-section h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
 }
+
 /* 预留模块样式 - use-case, brand-story */
 .use-case-section {
   background-color: #fff;
@@ -193,22 +201,27 @@ main {
   font-size: 1.2rem;
   color: #333;
 }
+
 .brand-story-section h2 {
   margin-bottom: 20px;
 }
+
 /* product-list-section */
 .product-list-section {
   background-color: #fff;
   margin-bottom: 40px;
 }
+
 .product-list-section h2 {
   text-align: center;
   margin-bottom: 20px;
 }
+
 .compare-features {
   text-align: center;
   margin-bottom: 20px;
 }
+
 .product-list {
   display: flex;
   justify-content: center;
@@ -216,6 +229,7 @@ main {
   gap: 30px;
   margin-top: 30px;
 }
+
 .product-item {
   width: 300px;
   background-color: #fff;
@@ -225,23 +239,28 @@ main {
   overflow: hidden;
   transition: box-shadow 0.3s, transform 0.3s;
 }
+
 .product-item:hover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.12);
   transform: translateY(-3px);
 }
+
 .product-item img {
   width: 100%;
   height: auto;
   display: block;
 }
+
 .product-item h3 {
   margin-top: 15px;
   font-size: 1.2rem;
 }
+
 .product-item p {
   color: #666;
   padding: 0 20px;
 }
+
 .product-item .btn {
   margin: 15px 0;
   display: inline-block;
@@ -251,6 +270,7 @@ main {
   text-decoration: none;
   border-radius: 5px;
 }
+
 .product-item .btn:hover {
   background-color: #0056b3;
 }
@@ -281,6 +301,7 @@ main {
   padding: 40px 20px;
   margin-bottom: 40px;
 }
+
 .partners-section,
 .multi-lang-section {
   background-color: #fff;
@@ -296,12 +317,14 @@ main {
   text-align: center;
   margin-bottom: 20px;
 }
+
 .contact-title {
   font-size: 1.8rem;
   position: relative;
   display: inline-block;
   padding-bottom: 5px;
 }
+
 .contact-title::after {
   content: "";
   position: absolute;
@@ -312,20 +335,24 @@ main {
   height: 2px;
   background-color: #007BFF; /* 蓝色底线 */
 }
+
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
   text-align: left;
   margin-top: 30px;
 }
+
 .form-group {
   margin-bottom: 15px;
 }
+
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
+
 .form-group input,
 .form-group textarea {
   width: 100%;
@@ -334,10 +361,12 @@ main {
   border-radius: 5px;
   transition: border-color 0.3s;
 }
+
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: #007BFF;
 }
+
 .contact-form button {
   display: block;
   margin: 20px auto 0;
@@ -347,6 +376,7 @@ main {
   border: none;
   border-radius: 5px;
 }
+
 .contact-form button:hover {
   background-color: #0056b3;
 }
@@ -369,13 +399,16 @@ main {
   padding: 20px;
   text-align: center;
 }
+
 .dark-footer a {
   color: #66ccff; /* 浅蓝文字 */
   text-decoration: none;
 }
+
 .dark-footer a:hover {
   color: #bee8ff; /* 悬停更亮一些 */
 }
+
 .dark-footer .footer-info {
   display: flex;
   flex-wrap: wrap;
@@ -383,6 +416,7 @@ main {
   gap: 30px;
   margin-bottom: 10px;
 }
+
 .dark-footer .company-info,
 .dark-footer .social-media {
   background-color: rgba(255, 255, 255, 0.05);
@@ -391,15 +425,18 @@ main {
   text-align: left;
   box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
 }
+
 .dark-footer .company-info h3,
 .dark-footer .social-media h3 {
   margin-bottom: 10px;
 }
+
 .social-icon {
   width: 20px;
   height: 20px;
   margin-right: 5px;
 }
+
 .footer-extend {
   margin-top: 10px;
   color: #ccc;
@@ -410,12 +447,14 @@ main {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
 .highlight-btn {
   background-color: #28A745; /* 或亮橙色 #FF9900 等 */
   color: #fff;
 }
+
 .highlight-btn:hover {
-  background-color: #218838; 
+  background-color: #218838;
 }
 
 /* 移动端(不变) */
@@ -424,28 +463,49 @@ main {
     display: block;
     text-align: center;
   }
+
   .header-gradient nav {
     float: none;
     margin-top: 10px;
   }
+
   .header-gradient nav ul li {
     display: inline-block;
     margin: 0 15px 10px 0;
   }
+
   .hero {
     height: 80vh; 
   }
+
   .hero-content h1 {
     font-size: 1.5rem;
   }
+
   .hero-content p {
     font-size: 1rem;
   }
+
   .logo-img {
     width: 60px;
   }
+
   .dark-footer .footer-info {
     flex-direction: column;
     align-items: center;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
