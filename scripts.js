@@ -53,24 +53,6 @@ const initEmailJS = () => {
 
 document.addEventListener('DOMContentLoaded', initEmailJS);
 
-/* 弹出框显示与隐藏功能 */
-const productBtn = document.querySelector('.header-gradient nav ul li a[href="products.html"]');
-const modal = document.querySelector('.modal');
-const modalOverlay = document.querySelector('.modal-overlay');
-
-// 点击产品按钮显示弹出框
-productBtn.addEventListener('click', (e) => {
-  e.preventDefault();  // 防止默认跳转行为
-  modal.classList.add('show');
-  modalOverlay.classList.add('show');
-});
-
-// 点击背景遮罩层隐藏弹出框
-modalOverlay.addEventListener('click', () => {
-  modal.classList.remove('show');
-  modalOverlay.classList.remove('show');
-});
-
 /* 预留对比按钮点击事件 */
 const initCompareFeature = () => {
   const compareBtn = document.querySelector(".compare-features .btn");
