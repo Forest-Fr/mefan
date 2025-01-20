@@ -10,37 +10,7 @@ body {
   background-color: #fff;
   color: #333;
   line-height: 1.6;
-}
-/* 横幅（banner）样式 */
-.promo-banner {
-  position: relative;
-  width: 100%;
-  background-color:#e0f7fa; /* 选择与背景色协调的淡蓝色 */
-  color: #00796b; /* 文字颜色 */
-  text-align: center;
-  padding: 10px 0;
-   z-index: 1001; /* 确保横幅在顶部 */
-  margin-top: 20px; /* 调整为合适的间隙，避免太大 */
-}
 
-.donate-btn {
-  display: inline-flex;
-  align-items: center;
-  color: #00796b; /* 按钮文字颜色 */
-  font-weight: bold;
-  text-decoration: none;
-  margin-left: 10px;
-}
-
-.donate-logo {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-}
-
-.donate-btn:hover {
-  color: #0056b3;
-  text-decoration: underline;
 }
 /* 浅蓝色渐变导航 */
 .header-gradient {
