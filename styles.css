@@ -14,14 +14,14 @@ body {
 
 /* 浅蓝色渐变导航 */
 .header-gradient {
-  background: linear-gradient(to right, #E7F3FF, #9BCBFF);
+  background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
+  /* 可根据需求再调整颜色 */
   border-bottom: 1px solid #ddd;
-  position: relative;
-  top: 0;
-  left: 0;
+  position: fixed;
+  top: 0; left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 5px 10px; /* 缩小导航栏高度 */
+  padding: 10px;
   display: flex;
   align-items: center;
 }
@@ -45,11 +45,19 @@ body {
 .header-gradient nav ul li a.active {
   color: #007BFF; /* 更亮的蓝色 */
 }
+
 /* Logo尺寸 */
 .logo-img {
-  width: 60px; /* 调整Logo大小 */
-  margin: 5px;
+  width: 80px;
+  margin: 10px;
 }
+
+/* 主内容区：预留头部空间100px */
+main {
+  margin-top: 100px;
+  padding: 20px;
+}
+
 /* Hero：全屏(桌面端) */
 .hero {
   position: relative;
@@ -101,10 +109,7 @@ body {
 .hero-content .btn:hover {
   background-color: #0056b3;
 }
-/* 主内容区：去除顶部空白 */
-main {
-  margin-top: 0;
-  padding: 20px;
+
 /* intro-section */
 .intro-section {
   background-color: #fff;
