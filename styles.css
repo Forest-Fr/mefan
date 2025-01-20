@@ -21,7 +21,7 @@ body {
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 6px;  /* 将padding从10px减少为6px，以减小导航栏的高度 */
+  padding: 3px;  /* 将padding从6px减少为3px，以减小导航栏的高度 */
   display: flex;
   align-items: center;
 
