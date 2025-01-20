@@ -19,6 +19,27 @@ body {
   margin-left: 10px;
 }
 
+/* 横幅（banner）样式 */
+.promo-banner {
+  position: relative;
+  width: 100%;
+  background-color:#e0f7fa; /* 选择与背景色协调的淡蓝色 */
+  color: #00796b; /* 文字颜色 */
+  text-align: center;
+  padding: 10px 0;
+  z-index: 1001; /* 确保横幅在顶部 */
+  margin-top: 40px; /* 在导航栏下方添加空隙 */
+}
+
+.donate-btn {
+  display: inline-flex;
+  align-items: center;
+  color: #00796b; /* 按钮文字颜色 */
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
 .donate-logo {
   width: 20px;
   height: 20px;
@@ -29,16 +50,17 @@ body {
   color: #0056b3;
   text-decoration: underline;
 }
+
 /* 浅蓝色渐变导航 */
 .header-gradient {
   background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
-  /* 可根据需求再调整颜色 */
   border-bottom: 1px solid #ddd;
-  position: fixed;
-  top: 0; left: 0;
+  position: relative; /* 保持在自然流式布局中 */
+  top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 10px;
+  padding: 10px; /* 增加导航栏的高度 */
   display: flex;
   align-items: center;
 }
