@@ -12,29 +12,22 @@ body {
   line-height: 1.6;
 }
 
-/* 添加横幅（banner） */
+/* 横幅（banner）样式 */
 .promo-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  background-color: #ff5a5f; /* 红色背景 */
-  color: white;
+  background-color: #e0f7fa; /* 选择与背景色协调的淡蓝色 */
+  color: #00796b; /* 文字颜色 */
   text-align: center;
-  padding: 10px 0;
-  z-index: 1001; /* 确保横幅在顶部 */
+  padding: 8px 0; /* 缩小高度 */
+  z-index: 1001;
+  margin-top: 40px; /* 保证横幅不和导航栏重叠 */
 }
 
-.promo-banner a {
-  color: white;
-  text-decoration: underline;
-  font-weight: bold;
-  margin-left: 10px;
-}
 .donate-btn {
   display: inline-flex;
   align-items: center;
-  color: #007BFF;
+  color: #00796b; /* 按钮文字颜色 */
   font-weight: bold;
   text-decoration: none;
   margin-left: 10px;
@@ -47,8 +40,8 @@ body {
 }
 
 .donate-btn:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  color: #004d40; /* 按钮悬停时的颜色变化 */
+  text-decoration: underline; /* 悬停时添加下划线效果 */
 }
 /* 浅蓝色渐变导航 */
 .header-gradient {
