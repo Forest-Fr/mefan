@@ -1,4 +1,4 @@
-/* ========== Reset & 基础 ========== */ 
+/* ========== Reset & 基础 ========== */
 * {
   margin: 0; 
   padding: 0; 
@@ -11,21 +11,6 @@ body {
   color: #333;
   line-height: 1.6;
 }
-
-.header-gradient {
-  background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
-  border-bottom: 1px solid #ddd;
-  position: relative; /* 保持在自然流式布局中 */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  padding: 10px; /* 增加导航栏的高度 */
-  display: flex;
-  align-items: center;
-}
-
-.donate-btn {
   display: inline-flex;
   align-items: center;
   color: #00796b; /* 按钮文字颜色 */
@@ -47,13 +32,13 @@ body {
 /* 浅蓝色渐变导航 */
 .header-gradient {
   background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
+  /* 可根据需求再调整颜色 */
   border-bottom: 1px solid #ddd;
   position: fixed;
-  top: 50px; /* 修改顶部位置，避免横幅遮挡 */
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 5px; /* 缩小高度 */
+  padding: 10px;
   display: flex;
   align-items: center;
 }
@@ -84,9 +69,9 @@ body {
   margin: 10px;
 }
 
-/* 主内容区：预留头部空间 */
+/* 主内容区：预留头部空间100px */
 main {
-  margin-top: 140px; /* 增加上方的空间，避免内容被横幅或导航栏遮挡 */
+  margin-top: 100px;
   padding: 20px;
 }
 
