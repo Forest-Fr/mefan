@@ -14,21 +14,16 @@ body {
 }
 /* 浅蓝色渐变导航 */
 .header-gradient {
-  background: linear-gradient(to right, #E7F3FF, #9BCBFF);
+  background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
   border-bottom: 1px solid #ddd;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
+  padding: 3px;  /* 将padding从6px减少为3px，以减小导航栏的高度 */
   display: flex;
-  justify-content: space-between; /* 分散对齐，确保logo与菜单之间有合理的间距 */
-  align-items: center;  /* 使logo和菜单在垂直方向上居中对齐 */
-  height: 3px; /* 固定导航栏的高度为 3px */
-  padding: 0 20px;  /* 设置左右内边距 */
-  box-sizing: border-box;  /* 确保padding计算在内 */
-
-
+  align-items: center;
 
 }
 .header-gradient nav {
