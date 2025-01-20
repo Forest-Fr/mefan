@@ -1,62 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MeFan - Products</title>
-   <!-- Favicon 设置 -->
+  <title>MeFan - 让体验无线自由</title>
+  <!-- Favicon 设置 -->
   <link rel="icon" href="MeFan Logo.png" type="image/x-icon"/>
-  <link rel="stylesheet" href="styles.css">
+  <!-- 引入字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- 样式与脚本 -->
+  <link rel="stylesheet" href="styles.css" />
   <script src="scripts.js" defer></script>
 </head>
 <body>
-  <!-- 顶部：渐变 -->
+ 
+  <!-- 顶部：浅蓝渐变 -->
   <header class="header-gradient">
-    <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img"/>
+    <img src="MeFan Logo.png" alt="MeFan Logo" class="logo-img" />
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="products.html" class="active">Products</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="products.html">Products</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- 主内容 -->
   <main>
-    <section class="contact-section">
-      <!-- 表单标题增加蓝色底线/阴影效果 -->
-      <h2 class="contact-title">联系我们</h2>
-      <p>如有任何疑问或建议，请通过以下方式与我们取得联系。</p>
-
-      <form id="contactForm" class="contact-form">
-        <div class="form-group">
-          <label for="name">姓名</label>
-          <input type="text" id="name" name="from_name" required placeholder="请输入您的姓名">
-        </div>
-        <div class="form-group">
-          <label for="email">邮箱</label>
-          <input type="email" id="email" name="reply_to" required placeholder="请输入您的邮箱">
-        </div>
-        <div class="form-group">
-          <label for="message">留言</label>
-          <textarea id="message" name="message" rows="5" required placeholder="请输入您的留言内容"></textarea>
-        </div>
-        <button type="submit" class="btn">提交</button>
-      </form>
+    <!-- Hero：全屏背景轮播 -->
+    <section class="hero">
+      <div class="hero-slides" id="hero-slides">
+        <div class="hero-slide" style="background-image: url('slide1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('slide2.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('slide3.jpg');"></div>
+      </div>
+      <div class="hero-content">
+        <h1>MeFan - 让体验无线自由</h1>
+        <p>通过我们的无线蓝牙耳机享受无缝连接和清晰的音质。</p>
+        <a href="products.html" class="btn">了解更多</a>
+      </div>
     </section>
 
-    <!-- 模块与页脚之间，增加浅灰色分割线 -->
-    <hr class="section-divider"/>
-
-    <!-- FAQ / 在线聊天模块预留 -->
-    <section class="extra-support-section">
-      <h2>FAQ（预留）</h2>
-      <p>在此添加常见问题解答；或集成在线聊天插件。</p>
+    <!-- 简要介绍区 (“为什么选择 MeFan?”) -->
+    <section class="intro-section">
+      <h2>为什么选择 MeFan?</h2>
+      <p>我们专注于无线音频领域，融合最新技术与时尚设计，为您带来舒适与卓越的聆听体验。</p>
     </section>
+
+    <!-- 场景应用卡片区：运动 / 通勤 / 会议 -->
+    <section class="use-case-section">
+      <h2>应用场景</h2>
+      <p>在不同场景中，MeFan耳机如何展现卓越表现？</p>
+
+      <div class="use-case-grid">
+        <div class="use-case-item">
+          <h3>运动场景</h3>
+          <p>运动时的防水、防汗表现……</p>
+        </div>
+        <div class="use-case-item">
+          <h3>通勤场景</h3>
+          <p>地铁、公交、办公室等噪音环境表现……</p>
+        </div>
+        <div class="use-case-item">
+          <h3>会议场景</h3>
+          <p>语音通话、降噪麦克风等……</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 也可加“品牌故事”模块等 -->
   </main>
 
-  <!-- 深蓝页脚 -->
+  <!-- 底部：深蓝色页脚 -->
   <footer class="dark-footer">
     <div class="footer-info">
       <div class="company-info">
@@ -67,20 +84,38 @@
       </div>
       <div class="social-media">
         <h3>社交媒体</h3>
-        <a href="https://wa.me/12817839998" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" class="social-icon"/>
+        <a 
+          href="https://wa.me/12817839998" 
+          target="_blank" 
+          rel="noopener" 
+          aria-label="WhatsApp"
+        >
+          <img 
+            src="https://cdn-icons-png.flaticon.com/512/124/124034.png" 
+            alt="WhatsApp icon" 
+            class="social-icon"
+          />
           <span>WhatsApp</span>
         </a>
-        <a href="https://linkedin.com/in/oliver-f-448b8a287" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn icon" class="social-icon"/>
+        <a 
+          href="https://linkedin.com/in/oliver-f-448b8a287" 
+          target="_blank" 
+          rel="noopener"
+          aria-label="LinkedIn"
+        >
+          <img 
+            src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" 
+            alt="LinkedIn icon" 
+            class="social-icon"
+          />
           <span>LinkedIn</span>
         </a>
         <a href="https://web.skype.com/?openPstnPage=true" target="_self" aria-label="Skype">
-          <img src="Skype Logo.png" alt="Skype Logo" class="social-icon"/>
+          <img src="Skype Logo.png" alt="Skype Logo" class="social-icon">
           <span>Skype</span>
         </a>
         <a href="weixin://dl/chat?wxid=wxid_kesvxwp296ci12" aria-label="WeChat">
-          <img src="WeChat Logo.png" alt="WeChat Logo" class="social-icon"/>
+          <img src="WeChat Logo.png" alt="WeChat Logo" class="social-icon">
           <span>WeChat</span>
         </a>
       </div>
@@ -89,14 +124,5 @@
       <p>&copy; 2025 MeFan. All rights reserved.</p>
     </div>
   </footer>
-
-  <!-- 弹出框部分 -->
-  <div class="modal-overlay"></div>
-  <div class="modal">
-    <!-- 弹出框内容 -->
-    <h3>产品详细信息</h3>
-    <p>此处为产品对比或展示信息（预留）。</p>
-    <button onclick="closeModal()">关闭</button>
-  </div>
 </body>
 </html>
