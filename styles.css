@@ -1,7 +1,7 @@
 /* ========== Reset & 基础 ========== */
 * {
-  margin: 0;
-  padding: 0;
+  margin: 0; 
+  padding: 0; 
   box-sizing: border-box;
 }
 
@@ -11,23 +11,35 @@ body {
   color: #333;
   line-height: 1.6;
 }
-/* ========== 新增 main 样式: 使主内容紧接着hero显示 ========== */
+
+/* ================== 去掉空白 ================== */
 main {
-  margin-top: 0; /* 去掉顶部空白，直接紧接hero */
+  margin-top: 0; /* 移除顶部空白 */
   padding: 20px;
 }
-/* 浅蓝色渐变导航 */
+
+/* ================== 调整hero位置 ================== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; 
+  overflow: hidden;
+  background-color: #eee;
+  margin-top: 0; /* 确保轮播图紧接导航 */
+}
+
+/* ================== 浅蓝色渐变导航 ================== */
 .header-gradient {
   background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
   border-bottom: 1px solid #ddd;
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
- padding: 5px; /* 可以减少导航栏的高度 */
+  padding: 5px;  /* 减少导航栏的高度 */
   display: flex;
-  align-items: center; /* 确保 logo 和菜单项垂直居中 */
+  align-items: center;
 }
 
 .header-gradient nav {
@@ -52,32 +64,31 @@ main {
 
 .header-gradient nav ul li a:hover,
 .header-gradient nav ul li a.active {
-  color: #007BFF;
+  color: #007BFF; /* 更亮的蓝色 */
 }
 
-/* Logo尺寸 */
+/* ================== Logo尺寸 ================== */
 .logo-img {
-  width: 60px; /* 根据要求调整 logo 大小 */
+  width: 80px;
   margin: 10px;
 }
 
-/* 横幅（banner）样式 */
+/* ================== 横幅（banner）样式 ================== */
 .promo-banner {
   position: relative;
   width: 100%;
-  background-color: #e0f7fa; /* 淡蓝色背景 */
+  background-color: #e0f7fa; /* 选择与背景色协调的淡蓝色 */
   color: #00796b; /* 按钮文字颜色 */
   text-align: center;
-  padding: 0; /* 这里将 padding 设置为 0 */
+  padding: 10px 0;
   z-index: 1001; /* 确保横幅在顶部 */
-  margin-top: 0; /* 不再有顶部空白 */
 }
 
 .donate-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center; /* 居中 */
-  color: #00796b;
+  justify-content: center;  /* 居中对齐 */
+  color: #00796b; 
   font-weight: bold;
   text-decoration: none;
   margin-left: 10px;
@@ -94,37 +105,20 @@ main {
   text-decoration: underline;
 }
 
-/* 主内容区：预留头部空间100px */
-main {
-  margin-top: 100px;
-  padding: 20px;
+/* ================== 移动端 Donate 按钮优化 ================== */
+@media (max-width: 768px) {
+  .promo-banner {
+    padding: 5px 0;
+  }
+  .donate-btn {
+    font-size: 14px; /* 小屏幕调整字体大小 */
+  }
+  .header-gradient {
+    padding: 10px 0; /* 确保导航栏大小合适 */
+  }
 }
 
-/* Hero：全屏(桌面端) */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh; 
-  overflow: hidden;
-  background-color: #eee;
-   margin-top: 0; /* 去掉任何可能的空白 */
-  padding: 0; /* 确保没有顶部空白 */
-}
-
-.hero-slides {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  transition: transform 1s ease;
-}
-
-.hero-slide {
-  min-width: 100%;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-}
-
+/* ================== Hero按钮 ================== */
 .hero-content {
   position: absolute;
   top: 50%;
@@ -161,20 +155,7 @@ main {
   background-color: #0056b3;
 }
 
-/* intro-section */
-.intro-section {
-  background-color: #fff;
-  padding: 40px 20px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.intro-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-}
-
-/* 预留模块样式 - use-case, brand-story */
+/* ================== 预留模块样式 - use-case, brand-story ================== */
 .use-case-section {
   background-color: #fff;
   padding: 40px 20px;
@@ -212,7 +193,7 @@ main {
   margin-bottom: 20px;
 }
 
-/* product-list-section */
+/* ================== 产品列表 ================== */
 .product-list-section {
   background-color: #fff;
   margin-bottom: 40px;
@@ -281,42 +262,7 @@ main {
   background-color: #0056b3;
 }
 
-/* product detail */
-.product-detail-section {
-  background-color: #fff;
-  text-align: center;
-  padding: 40px 20px;
-  margin-bottom: 40px;
-}
-
-/* user-review / tech-spec placeholders */
-.user-review-section,
-.tech-spec-section {
-  background-color: #f9f9f9;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 800px;
-  border-radius: 6px;
-  margin-bottom: 30px;
-}
-
-/* about-section */
-.about-section {
-  background-color: #f9f9f9;
-  text-align: center;
-  padding: 40px 20px;
-  margin-bottom: 40px;
-}
-
-.partners-section,
-.multi-lang-section {
-  background-color: #fff;
-  padding: 40px 20px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-/* contact-section */
+/* ================== 联系表单 ================== */
 .contact-section {
   background-color: #fff;
   padding: 40px 20px;
@@ -387,18 +333,7 @@ main {
   background-color: #0056b3;
 }
 
-/* 分割线(表单与页脚之间) */
-.section-divider {
-  margin: 30px auto;
-  max-width: 800px;
-  border: none;
-  height: 1px;
-  background-color: #eee;
-}
-
-/* 浅灰分隔/hover等可加 */
-
-/* 深蓝色页脚 */
+/* ================== 底部 ================== */
 .dark-footer {
   background-color: #1A1A1A;
   color: #fff;
@@ -448,7 +383,7 @@ main {
   color: #ccc;
 }
 
-/* 按钮的额外样式(如突出btn) */
+/* ================== 按钮样式 ================== */
 .btn {
   cursor: pointer;
   transition: background-color 0.3s;
@@ -460,14 +395,14 @@ main {
 }
 
 .highlight-btn:hover {
-  background-color: #218838;
+  background-color: #218838; 
 }
 
-/* 移动端 (优化 donate 按钮) */
+/* ================== 移动端 ================== */
 @media (max-width: 768px) {
   .header-gradient {
-    position: relative;
-    z-index: 1; /* 确保导航栏处于较低层 */
+    display: block;
+    text-align: center;
   }
 
   .header-gradient nav {
@@ -501,17 +436,3 @@ main {
     align-items: center;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
