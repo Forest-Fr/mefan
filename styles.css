@@ -54,10 +54,10 @@ body {
 
 }
 
-/* 主内容区： */
+/* 主内容区：使用calc动态计算顶边距 */
 main {
   padding: 20px;
-  margin-top: 20px;  /* 留出适当的空间，避免内容被遮挡 */
+  margin-top: calc(3px + 20px);  /* 使用 calc() 动态计算，确保内容不被导航栏遮挡 */
 }
 
 /* Hero：全屏(桌面端) */
