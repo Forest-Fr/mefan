@@ -1,4 +1,4 @@
-/***************************************************
+/*************************************************** 
  * scripts.js
  * 
  * 1. Hero轮播：全屏 100vh (PC端)，自动切换
@@ -11,6 +11,9 @@ const heroSlides = document.getElementById('hero-slides');
 if (heroSlides) {
   let currentIndex = 0;
   const totalSlides = heroSlides.children.length;
+
+  // 调整轮播动画样式，保证图片占满容器
+  heroSlides.style.transition = 'transform 1s ease'; // 确保过渡效果
 
   setInterval(() => {
     currentIndex = (currentIndex + 1) % totalSlides;
