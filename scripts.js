@@ -12,13 +12,14 @@ if (heroSlides) {
   let currentIndex = 0;
   const totalSlides = heroSlides.children.length;
 
-  // 调整轮播动画样式，保证图片占满容器
-  heroSlides.style.transition = 'transform 1s ease'; // 确保过渡效果
+  // 确保图片容器 hero-slides 的宽度可以适应所有子元素
+  heroSlides.style.width = `${100 * totalSlides}%`; // 容器宽度设置为图片数量的 100%
 
+  // 自动切换
   setInterval(() => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }, 5000);
+    currentIndex = (currentIndex + 1) % totalSlides;  // 循环切换
+    heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`; // 根据当前索引移动轮播图
+  }, 5000);  // 每 5 秒切换一次
 }
 
 /* EmailJS */
