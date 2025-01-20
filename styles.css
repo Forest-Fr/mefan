@@ -48,13 +48,14 @@ body {
 
 /* Logo尺寸 */
 .logo-img {
-  width: 80px;
-  margin: 10px;
+  width: 60px; /* 调整Logo大小 */
+  margin: 5px;
+
 }
 
-/* 主内容区：预留头部空间100px */
+/* 主内容区：去除顶部空白 */
 main {
-  margin-top: 100px;
+  margin-top: 0px;
   padding: 20px;
 }
 
