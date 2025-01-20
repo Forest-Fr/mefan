@@ -31,7 +31,25 @@ body {
   font-weight: bold;
   margin-left: 10px;
 }
+.donate-btn {
+  display: inline-flex;
+  align-items: center;
+  color: #007BFF;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 10px;
+}
 
+.donate-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.donate-btn:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
 /* 浅蓝色渐变导航 */
 .header-gradient {
   background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
