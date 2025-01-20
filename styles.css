@@ -1,6 +1,6 @@
 /* ========== Reset & 基础 ========== */
 * {
-  margin: 0;/* 去掉顶部空白，直接紧接hero */
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
@@ -11,7 +11,11 @@ body {
   color: #333;
   line-height: 1.6;
 }
-
+/* ========== 新增 main 样式: 使主内容紧接着hero显示 ========== */
+main {
+  margin-top: 0; /* 去掉顶部空白，直接紧接hero */
+  padding: 20px;
+}
 /* 浅蓝色渐变导航 */
 .header-gradient {
   background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
@@ -459,11 +463,11 @@ main {
   background-color: #218838;
 }
 
-/* 移动端(不变) */
+/* 移动端 (优化 donate 按钮) */
 @media (max-width: 768px) {
   .header-gradient {
-    display: block;
-    text-align: center;
+    position: relative;
+    z-index: 1; /* 确保导航栏处于较低层 */
   }
 
   .header-gradient nav {
