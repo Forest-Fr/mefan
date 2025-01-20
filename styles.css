@@ -15,15 +15,17 @@ body {
 /* 浅蓝色渐变导航 */
 .header-gradient {
   background: linear-gradient(to right, #E7F3FF, #9BCBFF); 
-  /* 可根据需求再调整颜色 */
   border-bottom: 1px solid #ddd;
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 10px;
+  padding: 6px;  /* 将padding从10px减少为6px，以减小导航栏的高度 */
   display: flex;
   align-items: center;
+
+
 }
 .header-gradient nav {
   margin-left: auto;
