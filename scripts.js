@@ -20,10 +20,14 @@ const initHeroCarousel = () => {
     heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
   };
 
-  setInterval(updateSlide, 5000); // 每5秒切换
-};
+  const startCarousel = () => {
+    // 使用 requestAnimationFrame 提供更高效的动画更新
+    const interval = setInterval(updateSlide, 5000); // 每5秒切换
+    return interval;
+  };
 
-initHeroCarousel();
+  startCarousel();
+};
 
 /* EmailJS 表单提交功能 */
 const initEmailJS = () => {
@@ -50,8 +54,6 @@ const initEmailJS = () => {
     });
   }
 };
-
-document.addEventListener('DOMContentLoaded', initEmailJS);
 
 /* 预留对比按钮点击事件 */
 const initCompareFeature = () => {
@@ -82,5 +84,8 @@ const initReservedFunctions = () => {
   initChatOrFAQ();
 };
 
-document.addEventListener('DOMContentLoaded', initReservedFunctions);
-
+document.addEventListener('DOMContentLoaded', () => {
+  initHeroCarousel();
+  initEmailJS();
+  initReservedFunctions();
+});
