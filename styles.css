@@ -121,6 +121,27 @@ main {
 .hero-content .btn:hover {
   background-color: #0056b3;
 }
+/* 小点点的样式 */
+.hero-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.hero-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  transition: background-color 0.3s;
+}
+
+.hero-dots .dot.active {
+  background-color: #007BFF; /* 激活的小点点颜色 */
+}
 
 /* intro-section */
 .intro-section {
