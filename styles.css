@@ -63,6 +63,27 @@ main {
   padding: 20px;
   margin-top: calc(60px + 20px);  /* 使用 calc() 动态计算，确保内容不被导航栏遮挡 */
 }
+/* 小点点的样式 */
+.hero-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.hero-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  transition: background-color 0.3s;
+}
+
+.hero-dots .dot.active {
+  background-color: #007BFF; /* 激活的小点点颜色 */
+}
 
 /* Hero：全屏(桌面端) */
 .hero {
