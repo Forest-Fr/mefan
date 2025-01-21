@@ -9,9 +9,8 @@
 /* 轮播功能 */
 const initHeroCarousel = () => {
   const heroSlides = document.getElementById('hero-slides');
-  const dots = document.querySelectorAll('.hero-dots .dot');  // 获取所有小点点
   
-  if (!heroSlides || dots.length === 0) return;
+  if (!heroSlides) return;
   
   let currentIndex = 0;
   const totalSlides = heroSlides.children.length;
@@ -19,25 +18,18 @@ const initHeroCarousel = () => {
   const updateSlide = () => {
     currentIndex = (currentIndex + 1) % totalSlides;
     heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-    // 更新小点点的状态
-    dots.forEach((dot, index) => {
-      if (index === currentIndex) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
   };
 
   setInterval(updateSlide, 5000); // 每5秒切换
 };
 
+initHeroCarousel();
+
 /* EmailJS 表单提交功能 */
 const initEmailJS = () => {
   if (typeof emailjs === 'undefined') return;
 
-  emailjs.init("HXCThZROMytOt-wyp");
+  emailjs.init("HXCThZROMytOt-wyp");  // 公共密钥
 
   const contactForm = document.getElementById("contactForm");
 
@@ -45,6 +37,7 @@ const initEmailJS = () => {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
+      // 使用 EmailJS 发送表单数据
       emailjs.sendForm("service_1ffkva1", "template_ypdj9n9", contactForm)
         .then(() => {
           alert("邮件已发送成功，我们将尽快与您联系！");
@@ -58,7 +51,35 @@ const initEmailJS = () => {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  initHeroCarousel();
-  initEmailJS();
-});
+document.addEventListener('DOMContentLoaded', initEmailJS);
+
+/* 预留对比按钮点击事件 */
+const initCompareFeature = () => {
+  const compareBtn = document.querySelector(".compare-features .btn");
+
+  if (compareBtn) {
+    compareBtn.addEventListener("click", () => {
+      alert("对比功能暂未实现 (预留)！");
+      // 未来可在此跳转对比页面或弹出对比Modal
+    });
+  }
+};
+
+/* 预留 3D模型或动态推荐逻辑 */
+const init3DModelOrRecommendations = () => {
+  // 未来可实现的功能
+};
+
+/* 预留 在线聊天或FAQ面板 */
+const initChatOrFAQ = () => {
+  // 未来可集成在线聊天或FAQ面板
+};
+
+/* 初始化所有预留功能 */
+const initReservedFunctions = () => {
+  initCompareFeature();
+  init3DModelOrRecommendations();
+  initChatOrFAQ();
+};
+
+document.addEventListener('DOMContentLoaded', initReservedFunctions);
