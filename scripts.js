@@ -22,7 +22,7 @@ const initHeroCarousel = () => {
 
   setInterval(updateSlide, 5000); // 每5秒切换
 };
-
+document.addEventListener('DOMContentLoaded', initHeroCarousel);
 initHeroCarousel();
 
 /* EmailJS 表单提交功能 */
