@@ -3,34 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <title>🔧 Verifications 管理后台</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /* —— 全局 —— */
+    /* —— 样式与之前保持一致 —— */
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,sans-serif;background:#f0f2f5;color:#333;display:flex;justify-content:center;padding:1rem}
+    body{font-family:Arial, sans-serif;background:#f0f2f5;color:#333;display:flex;justify-content:center;padding:1rem}
     .container{width:100%;max-width:1000px;background:#fff;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.1);padding:1.5rem;margin-bottom:1.5rem}
     h1{text-align:center;margin-bottom:1rem}
     .hidden{display:none}
-    /* —— 按钮 —— */
     .btn{display:inline-block;padding:.5rem 1rem;margin:.5rem 0;background:#0058a3;color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .2s}
     .btn:hover{background:#004080}
-    /* —— 区块 —— */
-    #authArea,#noPermArea,#adminArea{text-align:center}
     #adminInfo{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
-    /* —— 搜索+分页 —— */
     .search-bar{display:flex;gap:.5rem;margin-bottom:1rem}
     .search-bar input{flex:1;padding:.5rem;border:1px solid #ccc;border-radius:4px}
     .pagination{text-align:center;margin-top:1rem}
     .pagination .btn{margin:0 .25rem;padding:.4rem .8rem;background:#e0e0e0;color:#333}
     .pagination .btn.active{background:#0058a3;color:#fff}
-    /* —— 表格 —— */
     table{width:100%;border-collapse:collapse;font-size:.9rem}
     th,td{padding:.6rem;border:1px solid #ddd;text-align:left}
     th{background:#fafafa}
     td.actions{text-align:center}
     td.actions .btn{background:#a00;padding:.3rem .6rem}
-    /* —— 手机端 —— */
-    @media (max-width:768px){
+    @media(max-width:768px){
       .search-bar{flex-direction:column}
       table,thead,tbody,th,td,tr{display:block}
       thead{display:none}
@@ -40,8 +34,8 @@
       td.actions{justify-content:center}
     }
   </style>
-  <!-- Supabase UMD -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <!-- Supabase v2 UMD -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -52,7 +46,7 @@
       <button id="btn-login" class="btn">使用 GitHub 登录</button>
     </div>
 
-    <!-- 登录但无权限 -->
+    <!-- 无权限 -->
     <div id="noPermArea" class="hidden">
       <p>❌ 当前账户无管理员权限。</p>
       <button id="btn-logout1" class="btn">退出登录</button>
@@ -66,16 +60,13 @@
       </div>
 
       <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="搜索 email / code / content"/>
+        <input type="text" id="searchInput" placeholder="搜索 email / code / content">
         <button id="searchBtn" class="btn">搜索</button>
       </div>
 
       <table>
         <thead>
-          <tr>
-            <th>ID</th><th>邮箱</th><th>Code</th><th>失效时间</th>
-            <th>已验证</th><th>留言内容</th><th>创建时间</th><th>操作</th>
-          </tr>
+          <tr><th>ID</th><th>邮箱</th><th>Code</th><th>失效时间</th><th>已验证</th><th>留言内容</th><th>创建时间</th><th>操作</th></tr>
         </thead>
         <tbody id="dataBody"></tbody>
       </table>
@@ -84,97 +75,109 @@
     </div>
   </div>
 
-  <script>
-  /* ===== 配置 ===== */
-  const SUPABASE_URL      = 'https://wrgfrjwwtxyonbqxxnvp.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyZ2Zyand3dHh5b25icXh4bnZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2Nzk3ODYsImV4cCI6MjA1OTI1NTc4Nn0.ffm6g20BG36c8ROghk95rtl3dBO-vXM7-_xVMrQdfPg';
-  const ADMIN_EMAIL       = 'oliveroogle@gmail.com';
-  const ITEMS_PER_PAGE    = 8;
-  const REDIRECT_URL      = 'https://mefans.pages.dev/admin-verifications-hub.html';
+<script>
+/* ===== 配置 ===== */
+const SUPABASE_URL   = 'https://wrgfrjwwtxyonbqxxnvp.supabase.co';
+const SUPABASE_KEY   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyZ2Zyand3dHh5b25icXh4bnZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2Nzk3ODYsImV4cCI6MjA1OTI1NTc4Nn0.ffm6g20BG36c8ROghk95rtl3dBO-vXM7-_xVMrQdfPg';
+const ADMIN_EMAIL    = 'oliveroogle@gmail.com';
+const ITEMS_PER_PAGE = 8;
+const CURRENT_URL    = location.origin + location.pathname;  // https://mefans.pages.dev/admin-verifications-hub.html
 
-  /* ===== 初始化 ===== */
-  const { createClient } = supabase;
-  const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const { createClient } = supabase;
+const client = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  const authArea   = document.getElementById('authArea');
-  const noPermArea = document.getElementById('noPermArea');
-  const adminArea  = document.getElementById('adminArea');
-  const btnLogin   = document.getElementById('btn-login');
-  const btnLogout1 = document.getElementById('btn-logout1');
-  const btnLogout2 = document.getElementById('btn-logout2');
-  const adminEmail = document.getElementById('adminEmail');
-  const searchInput= document.getElementById('searchInput');
-  const searchBtn  = document.getElementById('searchBtn');
-  const dataBody   = document.getElementById('dataBody');
-  const pagination = document.getElementById('pagination');
-  let currentPage  = 1;
+/* ===== DOM ===== */
+const authArea   = document.getElementById('authArea');
+const noPermArea = document.getElementById('noPermArea');
+const adminArea  = document.getElementById('adminArea');
+const btnLogin   = document.getElementById('btn-login');
+const btnLogout1 = document.getElementById('btn-logout1');
+const btnLogout2 = document.getElementById('btn-logout2');
+const adminEmail = document.getElementById('adminEmail');
+const searchInput= document.getElementById('searchInput');
+const searchBtn  = document.getElementById('searchBtn');
+const dataBody   = document.getElementById('dataBody');
+const pagination = document.getElementById('pagination');
 
-  /* ===== 处理 OAuth 回调 ===== */
-  (async () => {
-    await client.auth.getSessionFromUrl({ storeSession: true });
-    if (location.hash) history.replaceState(null,'',location.pathname+location.search);
-    checkAuth();
-  })();
+let currentPage = 1;
 
-  client.auth.onAuthStateChange((event, session) => {
-    if (event === 'SIGNED_IN') {
-      // ★ 修复：确保落到后台页
-      if (location.href !== REDIRECT_URL) location.replace(REDIRECT_URL);
-    }
-    checkAuth(session);
-  });
+/* ===== 解析回调 ===== */
+(async () => {
+  try {               // 兼容 #access_token 和 ?code 两种方式
+    await client.auth.getSessionFromUrl({ storeSession:true });
+  } catch(e) { /* ignore if not a callback */ }
 
-  async function checkAuth(session){
-    if (!session){
-      const { data } = await client.auth.getSession();
-      session = data.session;
-    }
-    if (session?.user?.email === ADMIN_EMAIL){
-      showAdmin(session.user.email);
-    } else if (session?.user){
-      showNoPerm();
-    } else {
-      showAuth();
-    }
+  // 去掉 URL hash / query 中的 token
+  if (location.hash || location.search.includes('code=')) {
+    history.replaceState(null,'',CURRENT_URL);
+  }
+  checkAuth();
+})();
+
+/* ===== 监听状态变化 ===== */
+client.auth.onAuthStateChange(async (event, session) => {
+  if (event === 'SIGNED_IN' && location.href !== CURRENT_URL) {
+    location.replace(CURRENT_URL);          // 兜底：强制回到后台页
+  }
+  checkAuth(session);
+});
+
+/* ===== 权限判断 ===== */
+async function checkAuth(session){
+  if(!session){
+    ({ data:{ session } } = await client.auth.getSession());
+  }
+  if(session?.user?.email === ADMIN_EMAIL){
+    showAdmin(session.user.email);
+  }else if(session?.user){
+    showNoPerm();
+  }else{
+    showAuth();
+  }
+}
+/* ===== UI 切换 ===== */
+function showAuth (){authArea.classList.remove('hidden');noPermArea.classList.add('hidden');adminArea.classList.add('hidden');}
+function showNoPerm(){authArea.classList.add('hidden');noPermArea.classList.remove('hidden');adminArea.classList.add('hidden');}
+function showAdmin(email){
+  authArea.classList.add('hidden');noPermArea.classList.add('hidden');adminArea.classList.remove('hidden');
+  adminEmail.textContent = '当前管理员：' + email;
+  loadData(1);
+}
+
+/* ===== 登录 / 退出 ===== */
+btnLogin .onclick = () => client.auth.signInWithOAuth({
+  provider:'github',
+  options:{ redirectTo: CURRENT_URL }        // ✅ 正确传对象
+});
+[btnLogout1,btnLogout2].forEach(btn => btn.onclick = async () => {
+  await client.auth.signOut();
+  showAuth();
+});
+
+/* ===== 数据加载 ===== */
+async function loadData(page, keyword=''){
+  currentPage = page;
+  const from = (page-1)*ITEMS_PER_PAGE;
+  const to   = from+ITEMS_PER_PAGE-1;
+
+  let query = client.from('verifications')
+                   .select('*',{ count:'exact' })
+                   .order('created_at',{ ascending:false })
+                   .range(from,to);
+
+  if(keyword){
+    query = query.or(`email.ilike.%${keyword}%,code.ilike.%${keyword}%,content.ilike.%${keyword}%`);
   }
 
-  function showAuth(){ authArea.classList.remove('hidden'); noPermArea.classList.add('hidden'); adminArea.classList.add('hidden'); }
-  function showNoPerm(){ authArea.classList.add('hidden'); noPermArea.classList.remove('hidden'); adminArea.classList.add('hidden'); }
-  function showAdmin(email){ authArea.classList.add('hidden'); noPermArea.classList.add('hidden'); adminArea.classList.remove('hidden'); adminEmail.textContent='当前管理员：'+email; loadData(1); }
-
-  /* ===== 登录 ===== */
-  btnLogin.onclick = async () => {
-    try{                                         // ★ 修复：加 try/catch 避免静默失败
-      await client.auth.signInWithOAuth({
-        provider:'github',
-        options:{ redirectTo: REDIRECT_URL }    // ★ 修复：options 必须是对象
-      });
-    }catch(err){ console.error('登录失败:',err); alert('无法跳转 GitHub 登录，请检查控制台错误信息'); }
-  };
-
-  [btnLogout1,btnLogout2].forEach(btn => btn.onclick = async () => {
-    await client.auth.signOut();
-    showAuth();
-  });
-
-  /* ===== 数据加载 ===== */
-  async function loadData(page, keyword=''){
-    currentPage = page;
-    const from = (page-1)*ITEMS_PER_PAGE, to = from+ITEMS_PER_PAGE-1;
-
-    let query = client.from('verifications')
-                      .select('*',{ count:'exact' })
-                      .order('created_at',{ ascending:false })
-                      .range(from,to);
-
-    if (keyword){
-      query = query.or(`email.ilike.%${keyword}%,code.ilike.%${keyword}%,content.ilike.%${keyword}%`);
-    }
-
-    const { data, error, count } = await query;
-    if (error){ dataBody.innerHTML=`<tr><td colspan="8" style="color:red">加载失败：${error.message}</td></tr>`; return; }
-
-    dataBody.innerHTML = (data.length?data:[{}]).map(r=>data.length?`
+  const { data,error,count } = await query;
+  if(error){
+    dataBody.innerHTML = `<tr><td colspan="8" style="color:red">加载失败：${error.message}</td></tr>`;
+    return;
+  }
+  if(!data?.length){
+    dataBody.innerHTML = '<tr><td colspan="8">暂无数据</td></tr>';
+  }else{
+    dataBody.innerHTML = data.map(r=>`
       <tr>
         <td data-label="ID">${r.id}</td>
         <td data-label="邮箱">${r.email}</td>
@@ -183,30 +186,31 @@
         <td data-label="已验证">${r.verified}</td>
         <td data-label="留言内容">${r.content||''}</td>
         <td data-label="创建时间">${new Date(r.created_at).toLocaleString()}</td>
-        <td data-label="操作" class="actions"><button class="btn" onclick="deleteRow(${r.id})">删除</button></td>
-      </tr>`:`<tr><td colspan="8">暂无数据</td></tr>`).join('');
-    renderPagination(count||0);
+        <td data-label="操作" class="actions">
+          <button class="btn" onclick="deleteRow(${r.id})">删除</button>
+        </td>
+      </tr>`).join('');
   }
-
-  async function deleteRow(id){
-    if (!confirm('确认删除 ID='+id+' 的记录？')) return;
-    const { error } = await client.from('verifications').delete().eq('id',id);
-    if (error) alert('删除失败：'+error.message);
-    else loadData(currentPage,searchInput.value.trim());
+  renderPagination(count||0);
+}
+async function deleteRow(id){
+  if(!confirm('确认删除 ID='+id+' 的记录？')) return;
+  const { error } = await client.from('verifications').delete().eq('id',id);
+  if(error) alert('删除失败：'+error.message);
+  else      loadData(currentPage,searchInput.value.trim());
+}
+function renderPagination(total){
+  const pages = Math.ceil(total/ITEMS_PER_PAGE);
+  pagination.innerHTML='';
+  for(let i=1;i<=pages;i++){
+    const btn=document.createElement('button');
+    btn.textContent=i;
+    btn.className='btn'+(i===currentPage?' active':'');
+    btn.onclick = () => loadData(i,searchInput.value.trim());
+    pagination.appendChild(btn);
   }
-
-  function renderPagination(total){
-    pagination.innerHTML='';
-    const pages=Math.ceil(total/ITEMS_PER_PAGE);
-    for (let i=1;i<=pages;i++){
-      const b=document.createElement('button');
-      b.textContent=i; b.className='btn'+(i===currentPage?' active':'');
-      b.onclick=()=>loadData(i,searchInput.value.trim());
-      pagination.appendChild(b);
-    }
-  }
-
-  searchBtn.onclick = () => loadData(1,searchInput.value.trim());
-  </script>
+}
+searchBtn.onclick = () => loadData(1,searchInput.value.trim());
+</script>
 </body>
 </html>
