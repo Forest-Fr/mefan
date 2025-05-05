@@ -6,128 +6,41 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
     /* —— 全局 —— */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f2f5;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      padding: 1rem;
-    }
-    .container {
-      width: 100%;
-      max-width: 1000px;
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    .hidden { display: none; }
-
-    /* —— 公共按钮样式 —— */
-    .btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      margin: 0.5rem 0;
-      background: #0058a3;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn:hover { background: #004080; }
-
-    /* —— 顶部区域 —— */
-    #authArea, #noPermArea, #adminArea {
-      text-align: center;
-    }
-    #adminInfo {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    /* —— 搜索 + 分页 —— */
-    .search-bar {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .search-bar input {
-      flex: 1;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .pagination {
-      margin-top: 1rem;
-      text-align: center;
-    }
-    .pagination .btn {
-      margin: 0 0.25rem;
-      padding: 0.4rem 0.8rem;
-      background: #e0e0e0;
-      color: #333;
-    }
-    .pagination .btn.active {
-      background: #0058a3;
-      color: #fff;
-    }
-
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:#f0f2f5;color:#333;display:flex;justify-content:center;padding:1rem}
+    .container{width:100%;max-width:1000px;background:#fff;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.1);padding:1.5rem;margin-bottom:1.5rem}
+    h1{text-align:center;margin-bottom:1rem}
+    .hidden{display:none}
+    /* —— 按钮 —— */
+    .btn{display:inline-block;padding:.5rem 1rem;margin:.5rem 0;background:#0058a3;color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .2s}
+    .btn:hover{background:#004080}
+    /* —— 区块 —— */
+    #authArea,#noPermArea,#adminArea{text-align:center}
+    #adminInfo{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+    /* —— 搜索+分页 —— */
+    .search-bar{display:flex;gap:.5rem;margin-bottom:1rem}
+    .search-bar input{flex:1;padding:.5rem;border:1px solid #ccc;border-radius:4px}
+    .pagination{text-align:center;margin-top:1rem}
+    .pagination .btn{margin:0 .25rem;padding:.4rem .8rem;background:#e0e0e0;color:#333}
+    .pagination .btn.active{background:#0058a3;color:#fff}
     /* —— 表格 —— */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-    }
-    th, td {
-      padding: 0.6rem;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-    th {
-      background: #fafafa;
-    }
-    td.actions {
-      text-align: center;
-    }
-    td.actions .btn {
-      background: #a00;
-      padding: 0.3rem 0.6rem;
-    }
-
-    /* ========= 手机端 ========= */
-    @media (max-width: 768px) {
-      .search-bar { flex-direction: column; }
-      table, thead, tbody, th, td, tr { display: block; }
-      thead { display: none; }
-      tbody tr {
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 0.75rem;
-        padding: 0.5rem;
-        background: #fff;
-      }
-      tbody td {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.5rem;
-        border: none;
-        border-bottom: 1px solid #eee;
-      }
-      tbody td::before { content: attr(data-label); font-weight: bold; }
-      td.actions { justify-content: center; }
+    table{width:100%;border-collapse:collapse;font-size:.9rem}
+    th,td{padding:.6rem;border:1px solid #ddd;text-align:left}
+    th{background:#fafafa}
+    td.actions{text-align:center}
+    td.actions .btn{background:#a00;padding:.3rem .6rem}
+    /* —— 手机端 —— */
+    @media (max-width:768px){
+      .search-bar{flex-direction:column}
+      table,thead,tbody,th,td,tr{display:block}
+      thead{display:none}
+      tbody tr{border:1px solid #ccc;border-radius:4px;margin-bottom:.75rem;padding:.5rem;background:#fff}
+      tbody td{display:flex;justify-content:space-between;padding:.5rem;border:none;border-bottom:1px solid #eee}
+      tbody td::before{content:attr(data-label);font-weight:bold}
+      td.actions{justify-content:center}
     }
   </style>
-  <!-- Supabase JS 客户端（UMD 版） -->
+  <!-- Supabase UMD -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body>
@@ -145,202 +58,155 @@
       <button id="btn-logout1" class="btn">退出登录</button>
     </div>
 
-    <!-- 真正的后台 -->
+    <!-- 后台 -->
     <div id="adminArea" class="hidden">
       <div id="adminInfo">
         <span id="adminEmail">当前账号：</span>
         <button id="btn-logout2" class="btn">退出登录</button>
       </div>
 
-      <!-- 搜索栏 -->
       <div class="search-bar">
         <input type="text" id="searchInput" placeholder="搜索 email / code / content"/>
         <button id="searchBtn" class="btn">搜索</button>
       </div>
 
-      <!-- 数据表 -->
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>邮箱</th>
-            <th>Code</th>
-            <th>失效时间</th>
-            <th>已验证</th>
-            <th>留言内容</th>
-            <th>创建时间</th>
-            <th>操作</th>
+            <th>ID</th><th>邮箱</th><th>Code</th><th>失效时间</th>
+            <th>已验证</th><th>留言内容</th><th>创建时间</th><th>操作</th>
           </tr>
         </thead>
         <tbody id="dataBody"></tbody>
       </table>
 
-      <!-- 分页 -->
       <div class="pagination" id="pagination"></div>
     </div>
   </div>
 
-  <!-- 下面这段就是你提供的脚本，合并到一个 <script> 标签里 -->
   <script>
-   // —— 配置 —— 
+  /* ===== 配置 ===== */
   const SUPABASE_URL      = 'https://wrgfrjwwtxyonbqxxnvp.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyZ2Zyand3dHh5b25icXh4bnZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2Nzk3ODYsImV4cCI6MjA1OTI1NTc4Nn0.ffm6g20BG36c8ROghk95rtl3dBO-vXM7-_xVMrQdfPg';
   const ADMIN_EMAIL       = 'oliveroogle@gmail.com';
   const ITEMS_PER_PAGE    = 8;
-  // ← **写死管理后台页**，不再使用 window.location.origin
-  const REDIRECT_URL      = 'https://mefans.pages.dev/admin-verifications-hub';
+  const REDIRECT_URL      = 'https://mefans.pages.dev/admin-verifications-hub.html';
 
-  // 初始化 Supabase
+  /* ===== 初始化 ===== */
   const { createClient } = supabase;
   const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // DOM
-  const authArea    = document.getElementById('authArea');
-  const noPermArea  = document.getElementById('noPermArea');
-  const adminArea   = document.getElementById('adminArea');
-  const btnLogin    = document.getElementById('btn-login');
-  const btnLogout1  = document.getElementById('btn-logout1');
-  const btnLogout2  = document.getElementById('btn-logout2');
-  const adminEmail  = document.getElementById('adminEmail');
-  const searchInput = document.getElementById('searchInput');
-  const searchBtn   = document.getElementById('searchBtn');
-  const dataBody    = document.getElementById('dataBody');
-  const pagination  = document.getElementById('pagination');
+  const authArea   = document.getElementById('authArea');
+  const noPermArea = document.getElementById('noPermArea');
+  const adminArea  = document.getElementById('adminArea');
+  const btnLogin   = document.getElementById('btn-login');
+  const btnLogout1 = document.getElementById('btn-logout1');
+  const btnLogout2 = document.getElementById('btn-logout2');
+  const adminEmail = document.getElementById('adminEmail');
+  const searchInput= document.getElementById('searchInput');
+  const searchBtn  = document.getElementById('searchBtn');
+  const dataBody   = document.getElementById('dataBody');
+  const pagination = document.getElementById('pagination');
+  let currentPage  = 1;
 
-  let currentPage = 1;
-
-  // —— 处理 OAuth 回调 fragment —— 
+  /* ===== 处理 OAuth 回调 ===== */
   (async () => {
-    // 让 Supabase 解析并保存 session
     await client.auth.getSessionFromUrl({ storeSession: true });
-    // 清理 URL 上的 #fragment
-    if (window.location.hash) {
-      history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
+    if (location.hash) history.replaceState(null,'',location.pathname+location.search);
     checkAuth();
   })();
 
-  // 监听 auth 状态变化
-  client.auth.onAuthStateChange((_, session) => {
+  client.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN') {
+      // ★ 修复：确保落到后台页
+      if (location.href !== REDIRECT_URL) location.replace(REDIRECT_URL);
+    }
     checkAuth(session);
   });
 
-  async function checkAuth(session) {
-    if (!session) {
+  async function checkAuth(session){
+    if (!session){
       const { data } = await client.auth.getSession();
       session = data.session;
     }
-    if (session && session.user && session.user.email === ADMIN_EMAIL) {
+    if (session?.user?.email === ADMIN_EMAIL){
       showAdmin(session.user.email);
-    } else if (session && session.user) {
+    } else if (session?.user){
       showNoPerm();
     } else {
       showAuth();
     }
   }
 
-  function showAuth() {
-    authArea   .classList.remove('hidden');
-    noPermArea.classList.add   ('hidden');
-    adminArea .classList.add   ('hidden');
-  }
-  function showNoPerm() {
-    authArea   .classList.add   ('hidden');
-    noPermArea.classList.remove('hidden');
-    adminArea .classList.add   ('hidden');
-  }
-  function showAdmin(email) {
-    authArea   .classList.add   ('hidden');
-    noPermArea.classList.add   ('hidden');
-    adminArea .classList.remove('hidden');
-    adminEmail.textContent = '当前管理员：' + email;
-    loadData(1);
-  }
+  function showAuth(){ authArea.classList.remove('hidden'); noPermArea.classList.add('hidden'); adminArea.classList.add('hidden'); }
+  function showNoPerm(){ authArea.classList.add('hidden'); noPermArea.classList.remove('hidden'); adminArea.classList.add('hidden'); }
+  function showAdmin(email){ authArea.classList.add('hidden'); noPermArea.classList.add('hidden'); adminArea.classList.remove('hidden'); adminEmail.textContent='当前管理员：'+email; loadData(1); }
 
-  // —— 登录（固定回调地址）——
-  btnLogin.onclick = () => {
-    client.auth.signInWithOAuth({
-      provider: 'github',
-      options: { redirectTo: REDIRECT_URL }
-    });
+  /* ===== 登录 ===== */
+  btnLogin.onclick = async () => {
+    try{                                         // ★ 修复：加 try/catch 避免静默失败
+      await client.auth.signInWithOAuth({
+        provider:'github',
+        options:{ redirectTo: REDIRECT_URL }    // ★ 修复：options 必须是对象
+      });
+    }catch(err){ console.error('登录失败:',err); alert('无法跳转 GitHub 登录，请检查控制台错误信息'); }
   };
 
-  [btnLogout1, btnLogout2].forEach(btn => {
-    btn.onclick = async () => {
-      await client.auth.signOut();
-      showAuth();
-    };
+  [btnLogout1,btnLogout2].forEach(btn => btn.onclick = async () => {
+    await client.auth.signOut();
+    showAuth();
   });
 
-  // —— 加载数据 & 渲染 —— 
-  async function loadData(page, keyword = '') {
+  /* ===== 数据加载 ===== */
+  async function loadData(page, keyword=''){
     currentPage = page;
-    const from = (page - 1) * ITEMS_PER_PAGE;
-    const to   = from + ITEMS_PER_PAGE - 1;
+    const from = (page-1)*ITEMS_PER_PAGE, to = from+ITEMS_PER_PAGE-1;
 
-    let query = client
-      .from('verifications')
-      .select('*', { count: 'exact' })
-      .order('created_at', { ascending: false })
-      .range(from, to);
+    let query = client.from('verifications')
+                      .select('*',{ count:'exact' })
+                      .order('created_at',{ ascending:false })
+                      .range(from,to);
 
-    if (keyword) {
-      query = query.or(
-        `email.ilike.%${keyword}%,code.ilike.%${keyword}%,content.ilike.%${keyword}%`
-      );
+    if (keyword){
+      query = query.or(`email.ilike.%${keyword}%,code.ilike.%${keyword}%,content.ilike.%${keyword}%`);
     }
 
     const { data, error, count } = await query;
-    if (error) {
-      dataBody.innerHTML = `<tr><td colspan="8" style="color:red">加载失败：${error.message}</td></tr>`;
-      return;
-    }
-    if (!data || data.length === 0) {
-      dataBody.innerHTML = `<tr><td colspan="8">暂无数据</td></tr>`;
-    } else {
-      dataBody.innerHTML = data.map(r => `
-        <tr>
-          <td data-label="ID">${r.id}</td>
-          <td data-label="邮箱">${r.email}</td>
-          <td data-label="Code">${r.code}</td>
-          <td data-label="失效时间">${new Date(r.expires_at).toLocaleString()}</td>
-          <td data-label="已验证">${r.verified}</td>
-          <td data-label="留言内容">${r.content||''}</td>
-          <td data-label="创建时间">${new Date(r.created_at).toLocaleString()}</td>
-          <td data-label="操作" class="actions">
-            <button class="btn" onclick="deleteRow(${r.id})">删除</button>
-          </td>
-        </tr>
-      `).join('');
-    }
-    renderPagination(count || 0);
+    if (error){ dataBody.innerHTML=`<tr><td colspan="8" style="color:red">加载失败：${error.message}</td></tr>`; return; }
+
+    dataBody.innerHTML = (data.length?data:[{}]).map(r=>data.length?`
+      <tr>
+        <td data-label="ID">${r.id}</td>
+        <td data-label="邮箱">${r.email}</td>
+        <td data-label="Code">${r.code}</td>
+        <td data-label="失效时间">${new Date(r.expires_at).toLocaleString()}</td>
+        <td data-label="已验证">${r.verified}</td>
+        <td data-label="留言内容">${r.content||''}</td>
+        <td data-label="创建时间">${new Date(r.created_at).toLocaleString()}</td>
+        <td data-label="操作" class="actions"><button class="btn" onclick="deleteRow(${r.id})">删除</button></td>
+      </tr>`:`<tr><td colspan="8">暂无数据</td></tr>`).join('');
+    renderPagination(count||0);
   }
 
-  async function deleteRow(id) {
-    if (!confirm('确认删除 ID=' + id + ' 的记录？')) return;
-    const { error } = await client.from('verifications').delete().eq('id', id);
-    if (error) {
-      alert('删除失败：' + error.message);
-    } else {
-      loadData(currentPage, searchInput.value.trim());
-    }
+  async function deleteRow(id){
+    if (!confirm('确认删除 ID='+id+' 的记录？')) return;
+    const { error } = await client.from('verifications').delete().eq('id',id);
+    if (error) alert('删除失败：'+error.message);
+    else loadData(currentPage,searchInput.value.trim());
   }
 
-  function renderPagination(total) {
-    const pages = Math.ceil(total / ITEMS_PER_PAGE);
-    pagination.innerHTML = '';
-    for (let i = 1; i <= pages; i++) {
-      const btn = document.createElement('button');
-      btn.textContent = i;
-      btn.className   = 'btn' + (i === currentPage ? ' active' : '');
-      btn.onclick     = () => loadData(i, searchInput.value.trim());
-      pagination.appendChild(btn);
+  function renderPagination(total){
+    pagination.innerHTML='';
+    const pages=Math.ceil(total/ITEMS_PER_PAGE);
+    for (let i=1;i<=pages;i++){
+      const b=document.createElement('button');
+      b.textContent=i; b.className='btn'+(i===currentPage?' active':'');
+      b.onclick=()=>loadData(i,searchInput.value.trim());
+      pagination.appendChild(b);
     }
   }
 
-  searchBtn.onclick = () => {
-    loadData(1, searchInput.value.trim());
-  };
+  searchBtn.onclick = () => loadData(1,searchInput.value.trim());
   </script>
 </body>
 </html>
