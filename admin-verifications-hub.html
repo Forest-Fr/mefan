@@ -1,195 +1,353 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
+  <title>🔧 Verifications 管理后台</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>🛠️ Verifications 管理后台</title>
   <style>
+    /* —— 全局 —— */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
     }
     .container {
-      max-width: 900px;
-      margin: 2rem auto;
+      width: 100%;
+      max-width: 1000px;
       background: #fff;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
     }
     h1 {
-      margin-top: 0;
+      text-align: center;
+      margin-bottom: 1rem;
     }
-    #login, #no-permission { text-align: center; margin-top: 2rem; }
-    #hub { display: none; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
-    th { background: #fafafa; }
-    button {
+    .hidden { display: none; }
+
+    /* —— 公共按钮样式 —— */
+    .btn {
+      display: inline-block;
       padding: 0.5rem 1rem;
       margin: 0.5rem 0;
-      cursor: pointer;
-      border: 1px solid #888;
-      background: #fff;
+      background: #0058a3;
+      color: #fff;
+      border: none;
       border-radius: 4px;
+      cursor: pointer;
       transition: background 0.2s;
     }
-    button:hover { background: #f0f0f0; }
+    .btn:hover { background: #004080; }
+
+    /* —— 顶部区域 —— */
+    #authArea, #noPermArea, #adminArea {
+      text-align: center;
+    }
+    #adminInfo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    /* —— 搜索 + 分页 —— */
+    .search-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .pagination {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .pagination .btn {
+      margin: 0 0.25rem;
+      padding: 0.4rem 0.8rem;
+      background: #e0e0e0;
+      color: #333;
+    }
+    .pagination .btn.active {
+      background: #0058a3;
+      color: #fff;
+    }
+
+    /* —— 表格 —— */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 0.6rem;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background: #fafafa;
+    }
+    td.actions {
+      text-align: center;
+    }
+    td.actions .btn {
+      background: #a00;
+      padding: 0.3rem 0.6rem;
+    }
+
+    /* ========= 手机端 ========= */
+    @media (max-width: 768px) {
+      .search-bar {
+        flex-direction: column;
+      }
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead { display: none; }
+      tbody tr {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 0.75rem;
+        padding: 0.5rem;
+        background: #fff;
+      }
+      tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem;
+        border: none;
+        border-bottom: 1px solid #eee;
+      }
+      tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+      }
+      td.actions {
+        justify-content: center;
+      }
+    }
   </style>
+  <!-- Supabase JS 客户端（UMD 版） -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>🛠️ Verifications 管理后台</h1>
+    <h1>🔧 Verifications 管理后台</h1>
 
-    <!-- 未登录 / 登录按钮 -->
-    <div id="login">
-      <button id="btn-login">使用 GitHub 登录</button>
+    <!-- 未登录 -->
+    <div id="authArea">
+      <button id="btn-login" class="btn">使用 GitHub 登录</button>
     </div>
 
     <!-- 登录但无权限 -->
-    <div id="no-permission" style="display:none;">
-      <p>❌ 你没有权限访问此页面。</p>
-      <button id="btn-logout1">登出</button>
+    <div id="noPermArea" class="hidden">
+      <p>❌ 当前账户无管理员权限。</p>
+      <button id="btn-logout1" class="btn">退出登录</button>
     </div>
 
-    <!-- 真正的管理界面 -->
-    <div id="hub">
-      <button id="btn-logout2">登出</button>
+    <!-- 真正的后台 -->
+    <div id="adminArea" class="hidden">
+      <div id="adminInfo">
+        <span id="adminEmail">当前账号：</span>
+        <button id="btn-logout2" class="btn">退出登录</button>
+      </div>
+
+      <!-- 搜索栏 -->
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="搜索 email / code / content"/>
+        <button id="searchBtn" class="btn">搜索</button>
+      </div>
+
+      <!-- 数据表 -->
       <table>
         <thead>
           <tr>
             <th>ID</th>
             <th>邮箱</th>
             <th>Code</th>
-            <th>Expires At</th>
-            <th>Verified</th>
-            <th>Content</th>
-            <th>Created At</th>
+            <th>失效时间</th>
+            <th>已验证</th>
+            <th>留言内容</th>
+            <th>创建时间</th>
+            <th>操作</th>
           </tr>
         </thead>
-        <tbody id="verif-body">
-          <!-- JavaScript 动态填充 -->
+        <tbody id="dataBody">
+          <!-- JS 填充 -->
         </tbody>
       </table>
+
+      <!-- 分页 -->
+      <div class="pagination" id="pagination"></div>
     </div>
   </div>
 
   <script>
-    // —— 1. 初始化 Supabase 客户端 —— 
+    // —— 配置 —— 
     const SUPABASE_URL     = 'https://wrgfrjwwtxyonbqxxnvp.supabase.co';
-    const SUPABASE_ANON_KEY= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyZ2Zyand3dHh5b25icXh4bnZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2Nzk3ODYsImV4cCI6MjA1OTI1NTc4Nn0.ffm6g20BG36c8ROghk95rtl3dBO-vXM7-_xVMrQdfPg';  // 你的 anon key
-    const ALLOWED_ADMIN    = 'oliveroogle@gmail.com';
+    const SUPABASE_ANON_KEY= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyZ2Zyand3dHh5b25icXh4bnZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2Nzk3ODYsImV4cCI6MjA1OTI1NTc4Nn0.ffm6g20BG36c8ROghk95rtl3dBO-vXM7-_xVMrQdfPg'; // 你的 anon key
+    const ADMIN_EMAIL      = 'oliveroogle@gmail.com';
+    const ITEMS_PER_PAGE   = 8;
 
+    // 初始化 Supabase
     const { createClient } = supabase;
-    const supabaseClient   = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // 三个 UI 区块
-    const loginDiv   = document.getElementById('login');
-    const noPermDiv  = document.getElementById('no-permission');
-    const hubDiv     = document.getElementById('hub');
-    const tbody      = document.getElementById('verif-body');
-    const btnLogin   = document.getElementById('btn-login');
-    const btnLogout1= document.getElementById('btn-logout1');
-    const btnLogout2= document.getElementById('btn-logout2');
+    // DOM
+    const authArea    = document.getElementById('authArea');
+    const noPermArea  = document.getElementById('noPermArea');
+    const adminArea   = document.getElementById('adminArea');
+    const btnLogin    = document.getElementById('btn-login');
+    const btnLogout1  = document.getElementById('btn-logout1');
+    const btnLogout2  = document.getElementById('btn-logout2');
+    const adminEmail  = document.getElementById('adminEmail');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn   = document.getElementById('searchBtn');
+    const dataBody    = document.getElementById('dataBody');
+    const pagination  = document.getElementById('pagination');
 
-    // —— 2. 从 URL fragment 获取 session（并自动清除 fragment） —— 
+    let currentPage = 1;
+
+    // —— 处理 OAuth 回调 fragment —— 
     (async () => {
-      const { data, error } = await supabaseClient.auth.getSessionFromUrl({
-        storeSession: true
-      });
-      // 清除 fragment
+      // 如果 URL 中有 fragment，就让 Supabase 解析并清理
+      await client.auth.getSessionFromUrl({ storeSession: true });
       if (window.location.hash) {
         history.replaceState(null, '', window.location.pathname + window.location.search);
       }
-      checkAuthState();
+      checkAuth();
     })();
 
-    // —— 3. 认证状态变更 复用 —— 
-    supabaseClient.auth.onAuthStateChange((event, session) => {
-      checkAuthState(session);
+    // 监听 auth 变化
+    client.auth.onAuthStateChange((_, session) => {
+      checkAuth(session);
     });
 
-    async function checkAuthState(session) {
-      // 如果没有传 session，就再请求一次
+    async function checkAuth(session) {
       if (!session) {
-        const { data } = await supabaseClient.auth.getSession();
+        const { data } = await client.auth.getSession();
         session = data.session;
       }
-      if (session && session.user) {
-        const email = session.user.email;
-        if (email === ALLOWED_ADMIN) {
-          showHub();
-          fetchVerifications();
-        } else {
-          showNoPerm();
-        }
+      if (session && session.user && session.user.email === ADMIN_EMAIL) {
+        showAdmin(session.user.email);
+      } else if (session && session.user) {
+        showNoPerm();
       } else {
-        showLogin();
+        showAuth();
       }
     }
 
-    // —— 4. 三个界面切换 —— 
-    function showLogin() {
-      loginDiv.style.display     = 'block';
-      noPermDiv.style.display    = 'none';
-      hubDiv.style.display       = 'none';
+    // —— 界面切换 —— 
+    function showAuth() {
+      authArea.classList.remove('hidden');
+      noPermArea.classList.add('hidden');
+      adminArea.classList.add('hidden');
     }
     function showNoPerm() {
-      loginDiv.style.display     = 'none';
-      noPermDiv.style.display    = 'block';
-      hubDiv.style.display       = 'none';
+      authArea.classList.add('hidden');
+      noPermArea.classList.remove('hidden');
+      adminArea.classList.add('hidden');
     }
-    function showHub() {
-      loginDiv.style.display     = 'none';
-      noPermDiv.style.display    = 'none';
-      hubDiv.style.display       = 'block';
+    function showAdmin(email) {
+      authArea.classList.add('hidden');
+      noPermArea.classList.add('hidden');
+      adminArea.classList.remove('hidden');
+      adminEmail.textContent = '当前管理员：' + email;
+      loadData(1);
     }
 
-    // —— 5. 登录 & 登出 —— 
+    // —— 登录/登出 —— 
     btnLogin.onclick = () => {
-      // 动态取当前页面无 fragment 的完整 URL 作为回调
       const redirectTo = window.location.origin + window.location.pathname;
-      supabaseClient.auth.signInWithOAuth({
-        provider: 'github',
-        options: { redirectTo }
-      });
+      client.auth.signInWithOAuth({ provider: 'github', options: { redirectTo } });
     };
     [btnLogout1, btnLogout2].forEach(btn => {
       btn.onclick = async () => {
-        await supabaseClient.auth.signOut();
-        showLogin();
+        await client.auth.signOut();
+        showAuth();
       };
     });
 
-    // —— 6. 拉取并渲染 verifications —— 
-    async function fetchVerifications() {
-      const { data, error } = await supabaseClient
+    // —— 加载数据 & 渲染 —— 
+    async function loadData(page, keyword = '') {
+      currentPage = page;
+      const from = (page - 1) * ITEMS_PER_PAGE;
+      const to   = from + ITEMS_PER_PAGE - 1;
+
+      let query = client
         .from('verifications')
-        .select('*')
-        .order('created_at', { ascending: false });
+        .select('*', { count: 'exact' })
+        .order('created_at', { ascending: false })
+        .range(from, to);
+
+      if (keyword) {
+        // 对 email/code/content 做模糊搜索
+        query = query.or(`email.ilike.%${keyword}%,code.ilike.%${keyword}%,content.ilike.%${keyword}%`);
+      }
+
+      const { data, error, count } = await query;
       if (error) {
-        tbody.innerHTML = `<tr><td colspan="7" style="color:red">读取失败: ${error.message}</td></tr>`;
+        dataBody.innerHTML = `<tr><td colspan="8" style="color:red">加载失败：${error.message}</td></tr>`;
         return;
       }
-      if (!data.length) {
-        tbody.innerHTML = `<tr><td colspan="7">暂无记录</td></tr>`;
-        return;
+      if (!data || data.length === 0) {
+        dataBody.innerHTML = `<tr><td colspan="8">暂无数据</td></tr>`;
+      } else {
+        dataBody.innerHTML = data.map(r => `
+          <tr>
+            <td data-label="ID">${r.id}</td>
+            <td data-label="邮箱">${r.email}</td>
+            <td data-label="Code">${r.code}</td>
+            <td data-label="失效时间">${new Date(r.expires_at).toLocaleString()}</td>
+            <td data-label="已验证">${r.verified}</td>
+            <td data-label="留言内容">${r.content||''}</td>
+            <td data-label="创建时间">${new Date(r.created_at).toLocaleString()}</td>
+            <td data-label="操作" class="actions">
+              <button class="btn" onclick="deleteRow(${r.id})">删除</button>
+            </td>
+          </tr>
+        `).join('');
       }
-      tbody.innerHTML = data.map(r => `
-        <tr>
-          <td>${r.id}</td>
-          <td>${r.email}</td>
-          <td>${r.code}</td>
-          <td>${new Date(r.expires_at).toLocaleString()}</td>
-          <td>${r.verified}</td>
-          <td>${r.content || ''}</td>
-          <td>${new Date(r.created_at).toLocaleString()}</td>
-        </tr>
-      `).join('');
+      renderPagination(count || 0);
     }
+
+    // —— 删除记录 —— 
+    async function deleteRow(id) {
+      if (!confirm('确认删除 ID=' + id + ' 的记录？')) return;
+      const { error } = await client.from('verifications').delete().eq('id', id);
+      if (error) {
+        alert('删除失败：' + error.message);
+      } else {
+        loadData(currentPage, searchInput.value.trim());
+      }
+    }
+
+    // —— 分页 —— 
+    function renderPagination(total) {
+      const pages = Math.ceil(total / ITEMS_PER_PAGE);
+      pagination.innerHTML = '';
+      for (let i = 1; i <= pages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = 'btn' + (i === currentPage ? ' active' : '');
+        btn.onclick = () => loadData(i, searchInput.value.trim());
+        pagination.appendChild(btn);
+      }
+    }
+
+    // —— 搜索 —— 
+    searchBtn.onclick = () => {
+      loadData(1, searchInput.value.trim());
+    };
   </script>
 </body>
 </html>
