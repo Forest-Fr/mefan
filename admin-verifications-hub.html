@@ -69,7 +69,7 @@
   const SUPABASE_URL = 'https://wrgfrjwwtxyonbqxxnvp.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyZ2Zyand3dHh5b25icXh4bnZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2Nzk3ODYsImV4cCI6MjA1OTI1NTc4Nn0.ffm6g20BG36c8ROghk95rtl3dBO-vXM7-_xVMrQdfPg';
   const ADMIN_EMAIL  = 'oliveroogle@gmail.com';
-  const REDIRECT_URL = 'https://mefans.pages.dev/admin-verifications-hub'; // ★ 写死 https
+const REDIRECT_URL = 'https://mefans.pages.dev/admin-verifications-hub.html'; // 必须带 .html
 
   const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -87,12 +87,28 @@
   let currentPage = 1, limit = 8;
 
   /* ===== 登录 / 登出 ===== */
-  loginBtn.onclick = () => {
-    client.auth.signInWithOAuth({
-      provider:'github',
-      options:{ redirectTo: REDIRECT_URL }
-    });
-  };
+/* ===== 登录 ===== */
+loginBtn.onclick = async () => {
+  const { error } = await client.auth.signInWithOAuth({
+    provider: 'github',
+    options : { redirectTo: REDIRECT_URL }
+  });
+  if (error) console.error('OAuth 启动失败：', error);
+};
+
+/* ===== 回调解析 ===== */
+(async () => {
+  try {
+    await client.auth.getSessionFromUrl({ storeSession: true });
+  } catch (e) {
+    // 只有不是 OAuth 回调时才会走到这里
+  }
+  // 去掉 #access_token 片段 + 把 .html 清理掉
+  if (location.hash || location.href.endsWith('.html')) {
+    history.replaceState(null, '', location.pathname.replace(/\.html$/, ''));
+  }
+  checkAuth();
+  
   logoutBtn.onclick = async () => { await client.auth.signOut(); location.reload(); };
 
   /* ===== 数据加载 ===== */
