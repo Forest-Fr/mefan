@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Verifications Hub</title>
+  <style>
+    body { font-family: sans-serif; padding: 1rem; }
+    #login, #no-permission { text-align: center; margin-top: 2rem; }
+    #hub { display: none; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+    th { background: #f7f7f7; }
+    button { padding: 0.5rem 1rem; margin: 0.5rem; }
+  </style>
+  <!-- Supabase JS 客户端 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+
+  <h1>🛠️ Verifications 管理后台</h1>
+
+  <!-- 未登录 / 登录按钮 -->
+  <div id="login">
+    <button id="btn-login">使用 GitHub 登录</button>
+  </div>
+  <!-- 登录但无权限 -->
+  <div id="no-permission" style="display:none;">
+    <p>❌ 你没有权限访问此页面。</p>
+    <button id="btn-logout1">登出</button>
+  </div>
+  <!-- 真正的管理界面 -->
+  <div id="hub">
+    <button id="btn-logout2">登出</button>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>邮箱</th>
+          <th>Code</th>
+          <th>Expires At</th>
+          <th>Verified</th>
+          <th>Content</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody id="verif-body">
+        <!-- JavaScript 动态填充 -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // —— 1. 初始化 Supabase 客户端 ——
+    const SUPABASE_URL        = 'https://wrgfrjwwtxyonbqxxnvp.supabase.co';
+    const SUPABASE_ANON_KEY    = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyZ2Zyand3dHh5b25icXh4bnZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2Nzk3ODYsImV4cCI6MjA1OTI1NTc4Nn0.ffm6g20BG36c8ROghk95rtl3dBO-vXM7-_xVMrQdfPg';
+    const REDIRECT_URL         = 'https://mefans.pages.dev/admin-verifications-hub.html'; // Dashboard 里配置好的 Redirect
+    const ALLOWED_ADMIN_EMAIL  = 'oliveroogle@gmail.com';
+
+    const { createClient } = supabase;
+    const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // DOM 元素
+    const loginDiv      = document.getElementById('login');
+    const noPermDiv     = document.getElementById('no-permission');
+    const hubDiv        = document.getElementById('hub');
+    const tbody         = document.getElementById('verif-body');
+    const btnLogin      = document.getElementById('btn-login');
+    const btnLogout1    = document.getElementById('btn-logout1');
+    const btnLogout2    = document.getElementById('btn-logout2');
+
+    // —— 2. 监听认证状态变化 ——
+    supabaseClient.auth.onAuthStateChange((event, session) => {
+      if (session && session.user) {
+        const email = session.user.email;
+        if (email === ALLOWED_ADMIN_EMAIL) {
+          showHub();
+          fetchVerifications();
+        } else {
+          showNoPermission();
+        }
+      } else {
+        showLogin();
+      }
+    });
+
+    // 页面加载时也要检查一次
+    (async () => {
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (session && session.user) {
+        const email = session.user.email;
+        if (email === ALLOWED_ADMIN_EMAIL) {
+          showHub();
+          fetchVerifications();
+        } else {
+          showNoPermission();
+        }
+      } else {
+        showLogin();
+      }
+    })();
+
+    // —— 3. 三个界面切换 ——
+    function showLogin() {
+      loginDiv.style.display      = 'block';
+      noPermDiv.style.display     = 'none';
+      hubDiv.style.display        = 'none';
+    }
+    function showNoPermission() {
+      loginDiv.style.display      = 'none';
+      noPermDiv.style.display     = 'block';
+      hubDiv.style.display        = 'none';
+    }
+    function showHub() {
+      loginDiv.style.display      = 'none';
+      noPermDiv.style.display     = 'none';
+      hubDiv.style.display        = 'block';
+    }
+
+    // —— 4. 登录&登出 —— 
+    btnLogin.onclick = () => {
+      supabaseClient.auth.signInWithOAuth({
+        provider: 'github',
+        options: { redirectTo: REDIRECT_URL }
+      });
+    };
+    [btnLogout1, btnLogout2].forEach(btn => {
+      btn.onclick = async () => {
+        await supabaseClient.auth.signOut();
+        showLogin();
+      };
+    });
+
+    // —— 5. 取回并渲染 verifications ——
+    async function fetchVerifications() {
+      const { data, error } = await supabaseClient
+        .from('verifications')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (error) {
+        tbody.innerHTML = `<tr><td colspan="7" style="color:red">读取失败: ${error.message}</td></tr>`;
+        return;
+      }
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7">暂无记录</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = data.map(r => `
+        <tr>
+          <td>${r.id}</td>
+          <td>${r.email}</td>
+          <td>${r.code}</td>
+          <td>${new Date(r.expires_at).toLocaleString()}</td>
+          <td>${r.verified}</td>
+          <td>${r.content || ''}</td>
+          <td>${new Date(r.created_at).toLocaleString()}</td>
+        </tr>
+      `).join('');
+    }
+  </script>
+
+</body>
+</html>
