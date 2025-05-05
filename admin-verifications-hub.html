@@ -6,33 +6,18 @@
   <link rel="icon" href="MeFan Logo.png" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* —— 全局 —— */
+    /* —— 样式（同上版） —— */
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Arial,sans-serif;background:#f5f5f5;padding:20px;display:flex;flex-direction:column;align-items:center}
     h1{font-size:22px;margin-bottom:10px}
-
-    /* —— 按钮 —— */
     .btn{padding:8px 16px;background:#333;color:#fff;border:none;cursor:pointer}
     .btn:hover{background:#555}
-
-    /* —— 顶部 —— */
-    #logoutBtn{margin-left:1rem}
-
-    /* —— 表格 —— */
     table{width:100%;max-width:900px;border-collapse:collapse;margin-top:20px;background:#fff}
     th,td{padding:12px;border:1px solid #ddd;text-align:left}
     th{background:#eee}
-
-    /* —— 搜索 —— */
     #searchInput{padding:8px;width:250px}
-
-    /* —— 分页 —— */
-    .pagination{margin-top:20px}
-    .pagination button{margin-right:5px;padding:6px 10px}
-
+    .pagination{margin-top:20px}.pagination button{margin-right:5px;padding:6px 10px}
     .hidden{display:none}
-
-    /* ========= 手机端 ========= */
     @media(max-width:768px){
       body{display:block;padding:10px}
       h1{font-size:18px;margin-bottom:10px}
@@ -50,27 +35,22 @@
 <body>
   <h1>Verifications 管理后台</h1>
 
-  <!-- 登录区域 -->
   <div id="authArea">
     <button id="loginBtn" class="btn">登录查看 verifications</button>
   </div>
 
-  <!-- 管理员区域 -->
   <div id="adminArea" class="hidden">
     <span id="adminEmail"></span>
     <button id="logoutBtn" class="btn">退出登录</button>
 
-    <div style="margin-top:20px;">
+    <div style="margin-top:20px">
       <input type="text" id="searchInput" placeholder="搜索邮箱 / Code / 留言内容">
       <button id="searchBtn" class="btn">搜索</button>
     </div>
 
     <table id="veriTable">
       <thead>
-        <tr>
-          <th>ID</th><th>邮箱</th><th>Code</th><th>失效</th>
-          <th>已验证</th><th>留言</th><th>创建</th><th>操作</th>
-        </tr>
+        <tr><th>ID</th><th>邮箱</th><th>Code</th><th>失效</th><th>已验证</th><th>留言</th><th>创建</th><th>操作</th></tr>
       </thead>
       <tbody></tbody>
     </table>
@@ -78,41 +58,40 @@
     <div class="pagination" id="pagination"></div>
   </div>
 
-  <!-- Supabase UMD -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.5/dist/umd/supabase.min.js"></script>
   <script>
   /* ===== 配置 ===== */
-  const SUPABASE_URL = 'https://wrgfrjwwtxyonbqxxnvp.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyZ2Zyand3dHh5b25icXh4bnZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2Nzk3ODYsImV4cCI6MjA1OTI1NTc4Nn0.ffm6g20BG36c8ROghk95rtl3dBO-vXM7-_xVMrQdfPg';
-  const ADMIN_EMAIL  = 'oliveroogle@gmail.com';
-  const REDIRECT_URL = 'https://mefans.pages.dev/admin-verifications-hub.html';
+  const SUPABASE_URL='https://wrgfrjwwtxyonbqxxnvp.supabase.co';
+  const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3Mi...dfPg';
+  const ADMIN_EMAIL='oliveroogle@gmail.com';
+  const REDIRECT_URL='https://mefans.pages.dev/admin-verifications-hub.html';
 
-  const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const client=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
   /* ===== DOM ===== */
-  const $ = id=>document.getElementById(id);
-  const loginBtn = $('loginBtn'), logoutBtn = $('logoutBtn');
-  const authArea = $('authArea'), adminArea = $('adminArea');
-  const adminEmail = $('adminEmail');
-  const searchInput=$('searchInput'), searchBtn=$('searchBtn');
+  const $=id=>document.getElementById(id);
+  const loginBtn=$('loginBtn'),logoutBtn=$('logoutBtn');
+  const authArea=$('authArea'),adminArea=$('adminArea');
+  const adminEmail=$('adminEmail');
+  const searchInput=$('searchInput'),searchBtn=$('searchBtn');
   const tbody=$('veriTable').querySelector('tbody');
   const pagination=$('pagination');
 
-  let currentPage=1, limit=8;
+  let currentPage=1,limit=8;
 
   /* ===== 登录 / 退出 ===== */
-  loginBtn.onclick = ()=>client.auth.signInWithOAuth({ provider:'github', options:{redirectTo:REDIRECT_URL}});
-  logoutBtn.onclick= async ()=>{await client.auth.signOut();location.reload();};
+  loginBtn.onclick=()=>client.auth.signInWithOAuth({provider:'github',options:{redirectTo:REDIRECT_URL}});
+  logoutBtn.onclick=async()=>{await client.auth.signOut();location.reload();};
 
   /* ===== 加载数据 ===== */
-  async function load(page=1, kw=''){
-    const from=(page-1)*limit, to=from+limit-1;
+  async function load(page=1,kw=''){
+    const from=(page-1)*limit,to=from+limit-1;
     let q=client.from('verifications')
                .select('*',{count:'exact'})
                .order('created_at',{ascending:false})
                .range(from,to);
     if(kw) q=q.or(`email.ilike.%${kw}%,code.ilike.%${kw}%,content.ilike.%${kw}%`);
-    const { data,error,count }=await q;
+    const {data,error,count}=await q;
     if(error) return alert('加载失败：'+error.message);
 
     tbody.innerHTML=data.map(r=>`
@@ -130,7 +109,7 @@
   }
   async function del(id){
     if(!confirm('确认删除？'))return;
-    const { error } = await client.from('verifications').delete().eq('id',id);
+    const {error}=await client.from('verifications').delete().eq('id',id);
     if(error) alert('删除失败：'+error.message);
     else load(currentPage,searchInput.value.trim());
   }
@@ -139,21 +118,29 @@
     pagination.innerHTML='';
     const pages=Math.ceil(total/limit);
     for(let i=1;i<=pages;i++){
-      const b=document.createElement('button');
-      b.textContent=i;b.className='btn';
+      const b=document.createElement('button'); b.textContent=i;b.className='btn';
       if(i===active) b.style.background='#888';
       b.onclick=()=>{currentPage=i;load(i,searchInput.value.trim());};
       pagination.appendChild(b);
     }
   }
-  searchBtn.onclick = ()=>{currentPage=1;load(1,searchInput.value.trim());};
+
+  /* —— 搜索 —— */
+  searchBtn.onclick=()=>{currentPage=1;load(1,searchInput.value.trim());};
+
+  /* ★ 自动复位：搜索框清空时重载全部 */
+  searchInput.addEventListener('input',()=>{              /* ★ */
+    if(!searchInput.value.trim()){                        /* ★ */
+      currentPage=1; load(1,'');                          /* ★ */
+    }                                                     /* ★ */
+  });                                                     /* ★ */
 
   /* ===== 鉴权 ===== */
   (async()=>{
     try{await client.auth.getSessionFromUrl({storeSession:true});}catch{}
     if(location.hash||location.search.includes('code=')){history.replaceState(null,'',location.pathname.replace(/\.html$/,''));}
 
-    const { data:{ session }} = await client.auth.getSession();
+    const {data:{session}}=await client.auth.getSession();
     if(session?.user?.email===ADMIN_EMAIL){
       authArea.classList.add('hidden');adminArea.classList.remove('hidden');
       adminEmail.textContent='当前账号：'+session.user.email;
