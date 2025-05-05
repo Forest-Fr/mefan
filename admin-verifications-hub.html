@@ -182,11 +182,12 @@
 
   <!-- 下面这段就是你提供的脚本，合并到一个 <script> 标签里 -->
   <script>
-  // —— 配置 —— 
+   // —— 配置 —— 
   const SUPABASE_URL      = 'https://wrgfrjwwtxyonbqxxnvp.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyZ2Zyand3dHh5b25icXh4bnZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2Nzk3ODYsImV4cCI6MjA1OTI1NTc4Nn0.ffm6g20BG36c8ROghk95rtl3dBO-vXM7-_xVMrQdfPg';
   const ADMIN_EMAIL       = 'oliveroogle@gmail.com';
   const ITEMS_PER_PAGE    = 8;
+  // ← **写死管理后台页**，不再使用 window.location.origin
   const REDIRECT_URL      = 'https://mefans.pages.dev/admin-verifications-hub.html';
 
   // 初始化 Supabase
@@ -210,7 +211,9 @@
 
   // —— 处理 OAuth 回调 fragment —— 
   (async () => {
+    // 让 Supabase 解析并保存 session
     await client.auth.getSessionFromUrl({ storeSession: true });
+    // 清理 URL 上的 #fragment
     if (window.location.hash) {
       history.replaceState(null, '', window.location.pathname + window.location.search);
     }
@@ -254,12 +257,14 @@
     loadData(1);
   }
 
+  // —— 登录（固定回调地址）——
   btnLogin.onclick = () => {
     client.auth.signInWithOAuth({
       provider: 'github',
       options: { redirectTo: REDIRECT_URL }
     });
   };
+
   [btnLogout1, btnLogout2].forEach(btn => {
     btn.onclick = async () => {
       await client.auth.signOut();
@@ -267,6 +272,7 @@
     };
   });
 
+  // —— 加载数据 & 渲染 —— 
   async function loadData(page, keyword = '') {
     currentPage = page;
     const from = (page - 1) * ITEMS_PER_PAGE;
